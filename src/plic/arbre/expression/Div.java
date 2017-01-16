@@ -17,4 +17,8 @@ public class Div extends BinaireArithmetique {
         return " / ";
     }
     
+    public void verifier(){
+    	
+    }
+    
 }
