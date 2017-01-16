@@ -1,7 +1,7 @@
 package plic.arbre.expression;
 
 /**
- * 3 déc. 2015
+ * 3 dﾃｩc. 2015
  *
  * @author brigitte wrobel-dautcourt
  */
