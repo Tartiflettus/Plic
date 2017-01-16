@@ -12,4 +12,16 @@ public class ConstanteBool extends Constante {
         super(texte, n) ;
     }
 
+	@Override
+	public int getType() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void verifier() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

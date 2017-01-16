@@ -16,5 +16,17 @@ public class Moins extends BinaireArithmetique {
     public String operateur() {
         return " - ";
     }
+
+	@Override
+	public int getType() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void verifier() {
+		// TODO Auto-generated method stub
+		
+	}
     
 }

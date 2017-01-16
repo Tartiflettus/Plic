@@ -20,5 +20,11 @@ public class Div extends BinaireArithmetique {
     public void verifier(){
     	
     }
+
+	@Override
+	public int getType() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
     
 }
