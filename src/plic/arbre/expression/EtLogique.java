@@ -17,4 +17,10 @@ public class EtLogique extends BinaireLogique {
         return " et " ;
     }
 
+	@Override
+	public int getType() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

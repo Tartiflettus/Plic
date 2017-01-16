@@ -17,4 +17,16 @@ public class NonLogique extends Unaire {
         return " non " ;
     }
 
+	@Override
+	public int getType() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void verifier() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

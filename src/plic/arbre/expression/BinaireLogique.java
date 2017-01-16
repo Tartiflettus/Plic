@@ -12,4 +12,13 @@ public abstract class BinaireLogique extends Binaire {
         super(gauche, droite) ;
     }
     
+    public void verifier(){
+    	if(gauche.getType() == Expression.BOOL && droite.getType() == Expression.BOOL){
+    			System.out.println("Les deux expressions sont bien binaires");
+    	}else if(gauche.getType() != Expression.BOOL){
+    		System.out.println("L'expression de gauche n'est pas binaire");
+    	}else{
+    		System.out.println("L'expression de droite n'est pas binaire");
+    	}
+    }
 }
