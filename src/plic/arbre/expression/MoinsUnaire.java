@@ -1,7 +1,7 @@
 package plic.arbre.expression;
 
 /**
- * 3 déc. 2015
+ * 3 dﾃｩc. 2015
  *
  * @author brigitte wrobel-dautcourt
  */
@@ -19,14 +19,17 @@ public class MoinsUnaire extends Unaire {
 
 	@Override
 	public int getType() {
-		// TODO Auto-generated method stub
-		return 0;
+		return Expression.ENTIER;
 	}
 
 	@Override
 	public void verifier() {
-		// TODO Auto-generated method stub
-		
+		String general = "Erreur ligne : ";
+    	String att = " : moins unaire d'une expression non entière";
+    	
+    	if(expression.getType() != Expression.ENTIER){
+    		System.err.println(general + expression.getNoLigne() +att);
+    	}
 	}
 
 }

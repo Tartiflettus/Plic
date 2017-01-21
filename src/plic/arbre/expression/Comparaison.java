@@ -14,14 +14,16 @@ public abstract class Comparaison extends Binaire {
     
     public void verifier(){
     	String general = "Erreur ligne : ";
-    	String att = " : expression entière attendue";
+    	String att = " : comparaison de 2 types différents";
     	
-    	if(gauche.getType() != Expression.ENTIER){
+    	if(gauche.getType() != droite.getType()){
     		System.err.println(general + gauche.getNoLigne() +att);
     	}
-    	if(droite.getType() != Expression.ENTIER){
-    		System.err.println(general + droite.getNoLigne() +att);
-    	}
+    }
+    
+    @Override
+    public int getType(){
+    	return Expression.BOOL;
     }
 
 }

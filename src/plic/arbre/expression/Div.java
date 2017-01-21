@@ -17,14 +17,5 @@ public class Div extends BinaireArithmetique {
         return " / ";
     }
     
-    public void verifier(){
-    	
-    }
-
-	@Override
-	public int getType() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
     
 }

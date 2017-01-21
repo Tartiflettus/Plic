@@ -17,16 +17,5 @@ public class Different extends Comparaison {
         return " != ";
     }
 
-	@Override
-	public int getType() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void verifier() {
-		// TODO Auto-generated method stub
-		
-	}
   
 }

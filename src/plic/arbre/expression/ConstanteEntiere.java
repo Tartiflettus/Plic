@@ -14,8 +14,7 @@ public class ConstanteEntiere extends Constante {
 
 	@Override
 	public int getType() {
-		// TODO Auto-generated method stub
-		return 0;
+		return Expression.ENTIER;
 	}
 
 	@Override
