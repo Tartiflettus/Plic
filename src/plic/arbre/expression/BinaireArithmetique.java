@@ -14,11 +14,11 @@ public abstract class BinaireArithmetique extends Binaire {
     
     public void verifier(){
     	if(gauche.getType() == Expression.ENTIER && droite.getType() == Expression.ENTIER){
-			System.out.println("Les deux expressions sont bien entieres");
+			//System.out.println("Les deux expressions sont bien entieres");
     	}else if(gauche.getType() != Expression.ENTIER){
-    		System.out.println("L'expression de gauche n'est pas entiere");
+    		System.err.println("L'expression de gauche n'est pas entiere");
     	}else{
-    		System.out.println("L'expression de droite n'est pas entiere");
+    		System.err.println("L'expression de droite n'est pas entiere");
     	}
     }
     
