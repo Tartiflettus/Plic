@@ -28,10 +28,4 @@ public class ConstanteEntiere extends Constante {
     	return "li $v0, "+cste + "\n";
     }
 
-	@Override
-	public String toMIPSEnd() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
