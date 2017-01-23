@@ -19,6 +19,6 @@ public class Plus extends BinaireArithmetique {
 
 	@Override
 	public String toMIPSEnd() {
-		return "add $v0, $v0, $t8";
+		return "add $v0, $t8, $v0\n";
 	}
 }
