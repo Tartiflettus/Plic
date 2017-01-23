@@ -22,5 +22,10 @@ public class ConstanteEntiere extends Constante {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+    public String toMIPS(){
+    	return "li $v0, "+cste + "\n";
+    }
 
 }

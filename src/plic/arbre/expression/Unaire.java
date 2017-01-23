@@ -21,5 +21,13 @@ public abstract class Unaire extends Expression {
     public String toString() {
         return "(" + operateur() + expression + ")" ;
     }
+    
+    
+    @Override
+    public String toMIPS(){
+    	return expression.toMIPS() + "sw $v0, 0($sp)\n" + "addi $sp, $sp, -4\n" + toMIPSEnd();
+    }
+    
+    public abstract String toMIPSEnd();
 
 }

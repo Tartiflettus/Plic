@@ -31,5 +31,10 @@ public class MoinsUnaire extends Unaire {
     		System.err.println(general + expression.getNoLigne() +att);
     	}
 	}
+	
+	@Override
+	public String toMIPSEnd(){
+		return "sub $v0, $zero, $v0\n";
+	}
 
 }
