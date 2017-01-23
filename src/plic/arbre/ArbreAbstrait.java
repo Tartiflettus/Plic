@@ -20,6 +20,8 @@ public abstract class ArbreAbstrait {
     }
 
     public abstract void verifier() ;
+
     public abstract String toMIPS() ;   ﾃ� ﾃｩcrire pour plic0
+
 
 }

@@ -28,4 +28,9 @@ public class BlocDInstructions extends ArbreAbstrait {
 		
 	}
 
+	@Override
+	public String toMIPS() {
+		return null;
+	}
+
 }

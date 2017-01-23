@@ -1,5 +1,7 @@
 package plic.arbre.expression;
 
+import plic.exceptions.AnalyseSemantiqueException;
+
 /**
  * 3 dﾃｩc. 2015
  *
@@ -13,11 +15,9 @@ public abstract class Comparaison extends Binaire {
     }
     
     public void verifier(){
-    	String general = "Erreur ligne : ";
-    	String att = " : comparaison de 2 types différents";
     	
     	if(gauche.getType() != droite.getType()){
-    		System.err.println(general + gauche.getNoLigne() +att);
+    		throw(new AnalyseSemantiqueException(this.getNoLigne(),1,"Comparaison de deux types différents."));
     	}
     }
     
