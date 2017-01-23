@@ -19,8 +19,7 @@ public class OuLogique extends BinaireLogique {
 
 	@Override
 	public String toMIPSEnd() {
-		// TODO Auto-generated method stub
-		return null;
+		return "or $v0, $t8, $v0\n";
 	}
 
 

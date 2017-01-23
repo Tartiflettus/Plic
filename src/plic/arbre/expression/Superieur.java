@@ -19,8 +19,7 @@ public class Superieur extends Comparaison {
 
 	@Override
 	public String toMIPSEnd() {
-		// TODO Auto-generated method stub
-		return null;
+		return "sgt $v0, $t8, $v0\n";
 	}
 
     

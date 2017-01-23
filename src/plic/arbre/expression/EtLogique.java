@@ -19,8 +19,7 @@ public class EtLogique extends BinaireLogique {
 
 	@Override
 	public String toMIPSEnd() {
-		// TODO Auto-generated method stub
-		return null;
+		return "and $v0, $t8, $v0\n";
 	}
 
 }

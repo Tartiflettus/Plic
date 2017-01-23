@@ -19,8 +19,7 @@ public class Div extends BinaireArithmetique {
 
 	@Override
 	public String toMIPSEnd() {
-		// TODO Auto-generated method stub
-		return null;
+		return "div $v0, $t8, $v0\n";
 	}
     
     
