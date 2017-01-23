@@ -31,5 +31,10 @@ public class NonLogique extends Unaire {
     		System.err.println(general + expression.getNoLigne() +att);
     	}
 	}
+	
+	@Override
+	public String toMIPSEnd(){
+		return "not $v0, $v0\n";
+	}
 
 }

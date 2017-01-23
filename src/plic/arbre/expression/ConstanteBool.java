@@ -23,4 +23,10 @@ public class ConstanteBool extends Constante {
 		
 	}
 
+	
+	@Override
+    public String toMIPS(){
+    	return "li $v0, "+ cste + "\n";
+    }
+	
 }

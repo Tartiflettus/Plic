@@ -1,14 +1,14 @@
 package plic.arbre;
 
 /**
- * 3 déc. 2015
+ * 3 dﾃｩc. 2015
  *
  * @author brigitte wrobel-dautcourt
  */
 
 public abstract class ArbreAbstrait {
     
-    // numéro de ligne du début de l'instruction
+    // numﾃｩro de ligne du dﾃｩbut de l'instruction
     protected int noLigne ;
     
     protected ArbreAbstrait(int no) {
@@ -21,5 +21,6 @@ public abstract class ArbreAbstrait {
 
     public abstract void verifier() ;
     public abstract String toMIPS() ;
-    public abstract String toMipsEnd();
+    public abstract String toMIPSEnd();
+
 }

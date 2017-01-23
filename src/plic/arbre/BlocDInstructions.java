@@ -34,7 +34,7 @@ public class BlocDInstructions extends ArbreAbstrait {
 	}
 
 	@Override
-	public String toMipsEnd() {
+	public String toMIPSEnd() {
 		return null;
 	}
 
