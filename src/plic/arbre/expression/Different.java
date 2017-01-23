@@ -17,5 +17,11 @@ public class Different extends Comparaison {
         return " != ";
     }
 
+	@Override
+	public String toMIPSEnd() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
   
 }

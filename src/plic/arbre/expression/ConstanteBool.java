@@ -28,5 +28,11 @@ public class ConstanteBool extends Constante {
     public String toMIPS(){
     	return "li $v0, "+ cste + "\n";
     }
+
+	@Override
+	public String toMIPSEnd() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

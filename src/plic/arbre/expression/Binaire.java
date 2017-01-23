@@ -24,7 +24,7 @@ public abstract class Binaire extends Expression {
         return "(" + gauche + operateur() + droite + ")" ;
     }
 
-    public String toMips(){
+    public String toMIPS(){
     	StringBuilder mips = new StringBuilder();
 		mips.append("" + gauche.toMIPS()); //calcul expression gauche
 		mips.append("sw $v0, ($sp)" //empiler expression gauche
@@ -32,9 +32,11 @@ public abstract class Binaire extends Expression {
 		mips.append("" + droite.toMIPS()); //calcul expression droite
 		mips.append("lw $t8, ($sp)" //dépiler expression gauche
 				+ "add $sp, $sp, 4");
-		mips.append(""+toMipsEnd());
+		mips.append(""+toMIPSEnd());
 		return mips.toString();
     }
     
+
     public abstract String toMIPSEnd();
+
 }
