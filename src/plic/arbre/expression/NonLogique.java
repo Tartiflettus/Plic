@@ -1,7 +1,7 @@
 package plic.arbre.expression;
 
 /**
- * 3 déc. 2015
+ * 3 dﾃｩc. 2015
  *
  * @author brigitte wrobel-dautcourt
  */
@@ -19,14 +19,17 @@ public class NonLogique extends Unaire {
 
 	@Override
 	public int getType() {
-		// TODO Auto-generated method stub
-		return 0;
+		return Expression.BOOL;
 	}
 
 	@Override
 	public void verifier() {
-		// TODO Auto-generated method stub
-		
+		String general = "Erreur ligne : ";
+    	String att = " : non logique d'une expression non booléenne";
+    	
+    	if(expression.getType() != Expression.BOOL){
+    		System.err.println(general + expression.getNoLigne() +att);
+    	}
 	}
 
 }

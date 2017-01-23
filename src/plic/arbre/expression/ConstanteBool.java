@@ -14,8 +14,7 @@ public class ConstanteBool extends Constante {
 
 	@Override
 	public int getType() {
-		// TODO Auto-generated method stub
-		return 0;
+		return Expression.BOOL;
 	}
 
 	@Override
