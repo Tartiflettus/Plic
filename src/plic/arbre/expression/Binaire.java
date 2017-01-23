@@ -35,5 +35,5 @@ public abstract class Binaire extends Expression {
 		mips.append(""+toMIPSEnd());
 		return mips.toString();
     }
-    
+    public abstract String toMIPSEnd();
 }
