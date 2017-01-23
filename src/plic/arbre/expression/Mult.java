@@ -19,7 +19,7 @@ public class Mult extends BinaireArithmetique {
 
 	@Override
 	public String toMIPSEnd() {
-		return "mul $v0, $v0, $t8";
+		return "mul $v0, $t8, $v0\n";
 	}
 
 

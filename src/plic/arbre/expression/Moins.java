@@ -19,7 +19,7 @@ public class Moins extends BinaireArithmetique {
 
 	@Override
 	public String toMIPSEnd() {
-		return "sub $v0, $t8, $v0";
+		return "sub $v0, $t8, $v0\n";
 	}
     
 }
