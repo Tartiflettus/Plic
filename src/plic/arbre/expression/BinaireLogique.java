@@ -1,5 +1,7 @@
 package plic.arbre.expression;
 
+import plic.exceptions.AnalyseSemantiqueException;
+
 /**
  * 3 déc. 2015
  *
@@ -16,9 +18,9 @@ public abstract class BinaireLogique extends Binaire {
     	if(gauche.getType() == Expression.BOOL && droite.getType() == Expression.BOOL){
     			//System.out.println("Les deux expressions sont bien binaires");
     	}else if(gauche.getType() != Expression.BOOL){
-    		System.err.println("L'expression de gauche n'est pas binaire");
+    		throw(new AnalyseSemantiqueException(this.getNoLigne(),1,"L'expression de gauche n'est pas binaire."));
     	}else{
-    		System.err.println("L'expression de droite n'est pas binaire");
+    		throw(new AnalyseSemantiqueException(this.getNoLigne(),1,"L'expression de droite n'est pas binaire."));
     	}
     }
     

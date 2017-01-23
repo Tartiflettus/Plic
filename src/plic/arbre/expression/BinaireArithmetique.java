@@ -1,5 +1,7 @@
 package plic.arbre.expression;
 
+import plic.exceptions.AnalyseSemantiqueException;
+
 /**
  * 3 déc. 2015
  *
@@ -17,9 +19,9 @@ public abstract class BinaireArithmetique extends Binaire {
     	if(gauche.getType() == Expression.ENTIER && droite.getType() == Expression.ENTIER){
 			//System.out.println("Les deux expressions sont bien entieres");
     	}else if(gauche.getType() != Expression.ENTIER){
-    		System.err.println("L'expression de gauche n'est pas entiere");
+    		throw(new AnalyseSemantiqueException(this.getNoLigne(),1,"L'expression de gauche n'est pas entiere"));
     	}else{
-    		System.err.println("L'expression de droite n'est pas entiere");
+    		throw(new AnalyseSemantiqueException(this.getNoLigne(),1,"L'expression de droite n'est pas entiere"));
     	}
     }
     
