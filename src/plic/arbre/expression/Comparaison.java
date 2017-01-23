@@ -27,3 +27,7 @@ public abstract class Comparaison extends Binaire {
     }
 
 }
+
+
+
+

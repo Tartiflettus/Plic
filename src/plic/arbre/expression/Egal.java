@@ -17,4 +17,10 @@ public class Egal extends Comparaison {
         return " == ";
     }
     
+    
+    @Override
+    public String toMIPSEnd(){
+    	return "sub $v0, $t8, $v0\n" + "addi $v0, $v0, 1";
+    }
+    
 }
