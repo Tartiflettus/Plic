@@ -1,5 +1,7 @@
 package plic.arbre.expression;
 
+import plic.exceptions.AnalyseSemantiqueException;
+
 /**
  * 3 dﾃｩc. 2015
  *
@@ -24,11 +26,8 @@ public class NonLogique extends Unaire {
 
 	@Override
 	public void verifier() {
-		String general = "Erreur ligne : ";
-    	String att = " : non logique d'une expression non booléenne";
-    	
     	if(expression.getType() != Expression.BOOL){
-    		System.err.println(general + expression.getNoLigne() +att);
+    		throw(new AnalyseSemantiqueException(this.getNoLigne(),1,"Non logique d'une expression non booléenne."));
     	}
 	}
 	
