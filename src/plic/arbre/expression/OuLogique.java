@@ -17,5 +17,11 @@ public class OuLogique extends BinaireLogique {
         return " ou " ;
     }
 
+	@Override
+	public String toMIPSEnd() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }
