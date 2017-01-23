@@ -27,10 +27,10 @@ public class BlocDInstructions extends ArbreAbstrait {
 	public void verifier() {
 		
 	}
-
+	
 	@Override
-	public String toMIPS() {
-		return null;
+	public String toMIPS(){
+		return expr.toString();
 	}
 
 }
