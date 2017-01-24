@@ -27,11 +27,11 @@ public abstract class Binaire extends Expression {
     public String toMIPS(){
     	StringBuilder mips = new StringBuilder();
 		mips.append("" + gauche.toMIPS()); //calcul expression gauche
-		mips.append("\nsw $v0, ($sp)\n" //empiler expression gauche
+		mips.append("sw $v0, ($sp)\n" //empiler expression gauche
 				+ "addi $sp, $sp, -4\n");
 		mips.append("" + droite.toMIPS()); //calcul expression droite
-		mips.append("\nlw $t8, ($sp)\n" //dépiler expression gauche
-				+ "addi $sp, $sp, 4\n");
+		mips.append("addi $sp, $sp, 4\n" //dépiler expression gauche
+				+ "lw $t8, ($sp)\n" );
 		mips.append(""+toMIPSEnd());
 		return mips.toString();
     }
