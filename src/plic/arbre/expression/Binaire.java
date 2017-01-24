@@ -33,6 +33,11 @@ public abstract class Binaire extends Expression {
 		mips.append("addi $sp, $sp, 4\n" //dépiler expression gauche
 				+ "lw $t8, ($sp)\n" );
 		mips.append(""+toMIPSEnd());
+		//copie de v0 dans v1 pour permettre les tests de plic0
+		mips.append( "end :\n"
+				+ "move $v1, $v0\n"
+				+ "li $v0, 10\n"
+				+ "syscall");
 		return mips.toString();
     }
 
