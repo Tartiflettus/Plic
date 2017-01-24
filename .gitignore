@@ -2,5 +2,6 @@
 
 bin
 bin/*
-codeMIPS.mips
+*.mips
+TestsMartine/*.mips
 
