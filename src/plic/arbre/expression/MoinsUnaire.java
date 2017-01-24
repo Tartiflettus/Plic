@@ -1,5 +1,7 @@
 package plic.arbre.expression;
 
+import plic.exceptions.AnalyseSemantiqueException;
+
 /**
  * 3 dﾃｩc. 2015
  *
@@ -23,12 +25,9 @@ public class MoinsUnaire extends Unaire {
 	}
 
 	@Override
-	public void verifier() {
-		String general = "Erreur ligne : ";
-    	String att = " : moins unaire d'une expression non entière";
-    	
+	public void verifier() {  	
     	if(expression.getType() != Expression.ENTIER){
-    		System.err.println(general + expression.getNoLigne() +att);
+    		throw(new AnalyseSemantiqueException(this.getNoLigne(),1,"Moins unaire d'une expression non entière."));
     	}
 	}
 	

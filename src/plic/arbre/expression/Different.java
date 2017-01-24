@@ -19,8 +19,7 @@ public class Different extends Comparaison {
 
 	@Override
 	public String toMIPSEnd() {
-		// TODO Auto-generated method stub
-		return null;
+		return "sne $v0, $v0, $t8";
 	}
 
   
