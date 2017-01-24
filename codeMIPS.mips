@@ -1,28 +1,32 @@
-li $v0, 26
+li $v0, 5
 sw $v0, ($sp)
 addi $sp, $sp, -4
-li $v0, 1
+li $v0, 12
+sw $v0, ($sp)
+addi $sp, $sp, -4
+li $v0, 2
 addi $sp, $sp, 4
 lw $t8, ($sp)
 add $v0, $t8, $v0
 sw $v0, ($sp)
 addi $sp, $sp, -4
-li $v0, 5
+li $v0, 25
 addi $sp, $sp, 4
 lw $t8, ($sp)
-div $v0, $t8, $v0
+sub $v0, $t8, $v0
+addi $sp, $sp, 4
+lw $t8, ($sp)
+sgt $v0, $t8, $v0
+sw $v0, 0($sp)
+addi $sp, $sp, -4
+not $v0, $v0
 sw $v0, ($sp)
 addi $sp, $sp, -4
-li $v0, 5
-sw $v0, ($sp)
-addi $sp, $sp, -4
-li $v0, 3
+li $v0, 0
 addi $sp, $sp, 4
 lw $t8, ($sp)
-slt $v0, $t8, $v0
-addi $sp, $sp, 4
-lw $t8, ($sp)
-seq $v0, $v0, $t8end :
+or $v0, $t8, $v0
+end :
 move $v1, $v0
 li $v0, 10
 syscall
