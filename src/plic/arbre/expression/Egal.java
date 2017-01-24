@@ -21,7 +21,7 @@ public class Egal extends Comparaison {
     
     @Override
     public String toMIPSEnd(){
-    	return "seq $v0, $v0, $t8";
+    	return "seq $v0, $v0, $t8\n";
     }
     
 }
