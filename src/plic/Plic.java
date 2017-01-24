@@ -23,7 +23,11 @@ public class Plic {
             ArbreAbstrait arbre = (ArbreAbstrait) analyseur.parse().value;
             System.out.println("expression stockée dans l'arbre : " + arbre);
             arbre.verifier();
-            System.out.println("mips : " + arbre.toMIPS());
+            System.out.println("mips : " + arbre.toMIPS()
+            				+"end :\n"
+            				+ "move $v1, $v0\n"
+            				+ "li $v0, 10\n"
+            				+ "syscall");
             
         } 
         catch (FileNotFoundException ex) {
