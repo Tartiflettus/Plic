@@ -2,6 +2,8 @@ package plic ;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import plic.analyse.AnalyseurLexical;
@@ -21,13 +23,11 @@ public class Plic {
         try {
             AnalyseurSyntaxique analyseur = new AnalyseurSyntaxique(new AnalyseurLexical(new FileReader(fichier)));
             ArbreAbstrait arbre = (ArbreAbstrait) analyseur.parse().value;
-            System.out.println("expression stock√©e dans l'arbre : " + arbre);
-            arbre.verifier();
-            System.out.println("mips : " + arbre.toMIPS()
-            				+"end :\n"
-            				+ "move $v1, $v0\n"
-            				+ "li $v0, 10\n"
-            				+ "syscall");
+            creationFichierMIPS(arbre.toMIPS()
+    				+"end :\n"
+    				+ "move $v1, $v0\n"
+    				+ "li $v0, 10\n"
+    				+ "syscall");
             
         } 
         catch (FileNotFoundException ex) {
@@ -41,6 +41,17 @@ public class Plic {
         }
     }
 
+    public void creationFichierMIPS(String s){
+    	try {
+			FileWriter save = new FileWriter("codeMIPS.mips");
+			save.write(s.toString());
+			save.write("\r\n");
+			save.close();
+		} catch (IOException exception) {
+			System.out.println("Erreur lors de l'Ècriture : " + exception.getMessage());
+		}
+    }
+    
     public static void main(String[] args) {
         if (args.length != 1) {
             System.err.println("Nombre incorrect d'arguments") ;
