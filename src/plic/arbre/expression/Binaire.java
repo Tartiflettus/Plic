@@ -28,10 +28,10 @@ public abstract class Binaire extends Expression {
     	StringBuilder mips = new StringBuilder();
 		mips.append("" + gauche.toMIPS()); //calcul expression gauche
 		mips.append("\nsw $v0, ($sp)\n" //empiler expression gauche
-				+ "add $sp, -4\n");
+				+ "addi $sp, $sp, -4\n");
 		mips.append("" + droite.toMIPS()); //calcul expression droite
 		mips.append("\nlw $t8, ($sp)\n" //dépiler expression gauche
-				+ "add $sp, $sp, 4\n");
+				+ "addi $sp, $sp, 4\n");
 		mips.append(""+toMIPSEnd());
 		return mips.toString();
     }

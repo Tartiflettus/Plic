@@ -30,7 +30,7 @@ public class BlocDInstructions extends ArbreAbstrait {
 	
 	@Override
 	public String toMIPS(){
-		return expr.toString();
+		return expr.toMIPS();
 	}
 
 }
