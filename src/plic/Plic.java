@@ -36,8 +36,8 @@ public class Plic {
 		}
 	}
 
-	public void creationFichierMIPS(String s) {
-		try {
+    public void creationFichierMIPS(String s){
+    	try {
 			FileWriter save = new FileWriter("codeMIPS.mips");
 			save.write(s.toString());
 			save.write("\r\n");
@@ -45,15 +45,14 @@ public class Plic {
 		} catch (IOException exception) {
 			System.out.println("Erreur lors de l'écriture : " + exception.getMessage());
 		}
-	}
-
-	public static void main(String[] args) {
-		if (args.length != 1) {
-			System.err.println("Nombre incorrect d'arguments");
-			System.err.println("\tjava -jar plic.jar <fichierSource.plic>");
-			System.exit(1);
-		}
-		new Plic(args[0]);
-	}
-
+    }
+    
+    public static void main(String[] args) {
+        if (args.length != 1) {
+            System.err.println("Nombre incorrect d'arguments") ;
+            System.err.println("\tjava -jar plic.jar <fichierSource.plic>") ;
+            System.exit(1) ;
+        }
+        new Plic(args[0]) ;
+    }
 }

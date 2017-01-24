@@ -19,7 +19,7 @@ public class Different extends Comparaison {
 
 	@Override
 	public String toMIPSEnd() {
-		return "sne $v0, $v0, $t8";
+		return "sne $v0, $v0, $t8\n";
 	}
 
   
