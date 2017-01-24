@@ -24,7 +24,7 @@ public class Plic {
 			AnalyseurSyntaxique analyseur = new AnalyseurSyntaxique(new AnalyseurLexical(new FileReader(fichier)));
 			ArbreAbstrait arbre = (ArbreAbstrait) analyseur.parse().value;
 			arbre.verifier();
-			creationFichierMIPS(arbre.toMIPS() + "end :\n" + "move $v1, $v0\n" + "li $v0, 10\n" + "syscall");
+			creationFichierMIPS(arbre.toMIPS() + "end :\n" + "move $v1, $v0\n" + "li $v0, 10\n" + "syscall", fichier);
 			System.out.println("Compilation OK");
 
 		} catch (FileNotFoundException ex) {
@@ -36,23 +36,28 @@ public class Plic {
 		}
 	}
 
-    public void creationFichierMIPS(String s){
-    	try {
-			FileWriter save = new FileWriter("codeMIPS.mips");
+	public void creationFichierMIPS(String s, String fichier) {
+		try {
+			if (fichier.indexOf('.') > -1) {
+				String [] parts = fichier.split("\\.");
+				fichier = parts[0];
+			}
+			FileWriter save = new FileWriter(fichier + ".mips");
 			save.write(s.toString());
 			save.write("\r\n");
 			save.close();
 		} catch (IOException exception) {
 			System.out.println("Erreur lors de l'écriture : " + exception.getMessage());
 		}
-    }
-    
-    public static void main(String[] args) {
-        if (args.length != 1) {
-            System.err.println("Nombre incorrect d'arguments") ;
-            System.err.println("\tjava -jar plic.jar <fichierSource.plic>") ;
-            System.exit(1) ;
-        }
-        new Plic(args[0]) ;
-    }
+	}
+
+	public static void main(String[] args) {
+		if (args.length != 1) {
+			System.err.println("Nombre incorrect d'arguments");
+			System.err.println("\tjava -jar plic.jar <fichierSource.plic>");
+			System.exit(1);
+		}
+
+		new Plic(args[0]);
+	}
 }

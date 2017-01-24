@@ -1,0 +1,11 @@
+li $v0, 6
+sw $v0, ($sp)
+addi $sp, $sp, -4
+li $v0, 2
+addi $sp, $sp, 4
+lw $t8, ($sp)
+sub $v0, $t8, $v0
+end :
+move $v1, $v0
+li $v0, 10
+syscall
