@@ -16,13 +16,13 @@ public abstract class BinaireArithmetique extends Binaire {
     
     @Override
     public void verifier(){
-    	if(gauche.getType() == Expression.ENTIER && droite.getType() == Expression.ENTIER){
-			//System.out.println("Les deux expressions sont bien entieres");
-    	}else if(gauche.getType() != Expression.ENTIER){
-    		throw(new AnalyseSemantiqueException(this.getNoLigne(),1,"L'expression de gauche n'est pas entiere"));
-    	}else{
-    		throw(new AnalyseSemantiqueException(this.getNoLigne(),1,"L'expression de droite n'est pas entiere"));
+    	if(gauche.getType() != Expression.ENTIER){
+    		throw new AnalyseSemantiqueException(this.getNoLigne(),1,"L'expression de gauche n'est pas entiere");
+    	}else if(droite.getType() != Expression.ENTIER){
+    		throw new AnalyseSemantiqueException(this.getNoLigne(),1,"L'expression de droite n'est pas entiere");
     	}
+    	droite.verifier();
+    	gauche.verifier();
     }
     
     @Override

@@ -19,6 +19,8 @@ public abstract class Comparaison extends Binaire {
     	if(gauche.getType() != droite.getType()){
     		throw(new AnalyseSemantiqueException(this.getNoLigne(),1,"Comparaison de deux types différents."));
     	}
+    	droite.verifier();
+    	gauche.verifier();
     }
     
     @Override

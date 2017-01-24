@@ -25,7 +25,7 @@ public class BlocDInstructions extends ArbreAbstrait {
 
 	@Override
 	public void verifier() {
-		
+		expr.verifier();
 	}
 	
 	@Override

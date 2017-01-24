@@ -29,6 +29,7 @@ public class NonLogique extends Unaire {
     	if(expression.getType() != Expression.BOOL){
     		throw(new AnalyseSemantiqueException(this.getNoLigne(),1,"Non logique d'une expression non booléenne."));
     	}
+    	expression.verifier();
 	}
 	
 	@Override

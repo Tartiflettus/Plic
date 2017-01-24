@@ -29,6 +29,7 @@ public class MoinsUnaire extends Unaire {
     	if(expression.getType() != Expression.ENTIER){
     		throw(new AnalyseSemantiqueException(this.getNoLigne(),1,"Moins unaire d'une expression non entière."));
     	}
+    	expression.verifier();
 	}
 	
 	@Override

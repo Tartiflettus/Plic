@@ -22,6 +22,8 @@ public abstract class BinaireLogique extends Binaire {
     	}else{
     		throw(new AnalyseSemantiqueException(this.getNoLigne(),1,"L'expression de droite n'est pas binaire."));
     	}
+    	droite.verifier();
+    	gauche.verifier();
     }
     
     @Override
