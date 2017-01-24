@@ -1,0 +1,28 @@
+li $v0, 26
+sw $v0, ($sp)
+addi $sp, $sp, -4
+li $v0, 1
+addi $sp, $sp, 4
+lw $t8, ($sp)
+add $v0, $t8, $v0
+sw $v0, ($sp)
+addi $sp, $sp, -4
+li $v0, 5
+addi $sp, $sp, 4
+lw $t8, ($sp)
+div $v0, $t8, $v0
+sw $v0, ($sp)
+addi $sp, $sp, -4
+li $v0, 5
+sw $v0, ($sp)
+addi $sp, $sp, -4
+li $v0, 3
+addi $sp, $sp, 4
+lw $t8, ($sp)
+slt $v0, $t8, $v0
+addi $sp, $sp, 4
+lw $t8, ($sp)
+seq $v0, $v0, $t8end :
+move $v1, $v0
+li $v0, 10
+syscall
