@@ -1,17 +1,18 @@
 package plic.arbre.variable;
 
 import plic.arbre.ArbreAbstrait;
+import plic.tds.Entree;
 
 public abstract class Variable extends ArbreAbstrait {
-	protected String idf;
+	protected Entree idf;
 	
-	public Variable(int no, String idf) {
+	public Variable(int no, Entree idf) {
 		super(no);
 		this.idf = idf;
 	}
 
 	
-	public String getIdf(){
+	public Entree getIdf(){
 		return idf;
 	}
 

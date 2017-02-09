@@ -1,8 +1,10 @@
 package plic.arbre.variable;
 
+import plic.tds.Entree;
+
 public class VariableEntiere extends Variable {
 
-	public VariableEntiere(int no, String idf) {
+	public VariableEntiere(int no, Entree idf) {
 		super(no, idf);
 	}
 
