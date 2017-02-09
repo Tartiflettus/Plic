@@ -35,10 +35,14 @@ commentaireSlashEtoile = [/][*]
 commentaireEtoileSlash = [*][/]
 
 idf = [a-zA-Z]+([0-9]+ | [a-zA-Z] | "_" | "$")*
-classe = "class"
+chaine = ( \"[^\"]*\" )
+classe = "classe"
 publique = "publique"
 privee = "privee"
 entier = "entier"
+fin = "fin"
+ecrire = "ecrire"
+
 
 csteE = [0-9]+
 csteB = "vrai" | "faux"
@@ -48,20 +52,33 @@ espace = {finDeLigne}  | [ \t\f]
 
 %%
 
-<YYINITIAL> idf 				{ return symbol(CodesLexicaux.IDF); }
-<YYINITIAL> classe 				{ return symbol(CodesLexicaux.CLASS); }
-<YYINITIAL> publique			{ return symbol(CodesLexicaux.PUBLIQUE); }
-<YYINITIAL> privee				{ return symbol(CodesLexicaux.PRIVEE); }
-<YYINITIAL> entier				{ return symbol(CodesLexicaux.ENTIER); }
-
-"+"                	{ return symbol(CodesLexicaux.PLUS); }
-"-"                	{ return symbol(CodesLexicaux.MOINS); }
-"*"                	{ return symbol(CodesLexicaux.MULT); }
-"/"                	{ return symbol(CodesLexicaux.DIV); }
-
 <YYINITIAL> {commentaireSlashSlash} {}
 <YYINITIAL> {commentaireSlashEtoile} { yybegin(commentaire); }
 <commentaire> {commentaireEtoileSlash} { yybegin(YYINITIAL); }
+
+
+
+<YYINITIAL> {idf} 				{ return symbol(CodesLexicaux.IDF, yytext()); }
+
+<YYINITIAL> {entier}				{ return symbol(CodesLexicaux.entier); }
+<YYINITIAL> {chaine} 				{ return symbol(CodesLexicaux.chaine, yytext()); }
+<YYINITIAL> {classe} 				{ return symbol(CodesLexicaux.classe); }
+<YYINITIAL> {publique}			{ return symbol(CodesLexicaux.publique); }
+<YYINITIAL> {privee}				{ return symbol(CodesLexicaux.privee); }
+<YYINITIAL> {ecrire}        { return symbol(CodesLexicaux.ecrire); }
+<YYINITIAL> {fin}           { return symbol(CodesLexicaux.fin); }
+
+<YYINITIAL> ";"           { return symbol(CodesLexicaux.pointvirgule); } 
+<YYINITIAL> "="           { return symbol(CodesLexicaux.egal); }
+<YYINITIAL> ","           { return symbol(CodesLexicaux.virgule); }
+<YYINITIAL> "\""          { return symbol(CodesLexicaux.guillemet); }
+
+
+<YYINITIAL> "+"                	{ return symbol(CodesLexicaux.PLUS); }
+<YYINITIAL> "-"                	{ return symbol(CodesLexicaux.MOINS); }
+<YYINITIAL> "*"                	{ return symbol(CodesLexicaux.MULT); }
+<YYINITIAL> "/"                	{ return symbol(CodesLexicaux.DIV); }
+
 
 
 <YYINITIAL> "+"                	{ return symbol(CodesLexicaux.PLUS); }

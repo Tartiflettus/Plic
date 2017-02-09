@@ -68,12 +68,22 @@ parser code {:
 
 terminal Symbol    PLUS, MOINS, MULT, DIV, PAROUV, PARFER ;
 terminal Symbol    SUP, INF, EGALEGAL, DIFF, ET, OU, NON ;
-terminal String    CONSTANTEINT, CONSTANTEBOOL, classe, idf, publique, privee, entier;
+terminal Symbol    fin, pointvirgule, publique, privee, classe, egal, virgule, ecrire;
+terminal String    CONSTANTEINT, CONSTANTEBOOL, idf, entier, chaine;
    
 /* Non terminals used in the grammar section.  */
 
 non terminal ArbreAbstrait SYSTEME ;
-non terminal Expression CLASSE, DECLARATION, DECL_CHAMP, STATUT, TYPE, DECL_CONST, INSTRUCTION, AFFECT, ACCES, ECRIRE, EXPR, CSTE;
+non terminal Classe CLASSE;
+non terminal Expression EXPR, CSTE;
+non terminal int STATUT;
+non terminal Type TYPE;
+non terminal BlocDInstructions LISTE_DECL, DECL_CHAMP, DECL_CONST;
+non terminal Instruction DECLARATION, INSTRUCTION, AFFECT, ECRIRE;
+non terminal Entree ACCES;
+non terminal List<String> LISTE_IDF;
+non terminal String CSTCHAINE;
+
 
 precedence left INF, SUP ;
 precedence left EGALEGAL, DIFF;
@@ -87,54 +97,117 @@ precedence left NON ;
  
 start with SYSTEME ;
 
-SYSTEME ::= 	CLASSE
-				{: 
-				
-				/*BlocDInstructions arbre = new BlocDInstructions(eleft+1) ;
-                   RESULT = arbre ; */:}
+SYSTEME ::= 	CLASSE:c
+                {:
+                       RESULT = c;  
+                :}
                 ;
 
-CLASSE 	::=		classe idf:i LISTE_DECL fin
-				{: /*BlocDInstructions arbre = new BlocDInstructions(eleft+1) ;
-                   RESULT = arbre ; */:}
+CLASSE 	::=	classe idf:i LISTE_DECL:l fin
+                {: 
+                        Classe c = new Classe(i);
+                        for(Entree e : l){
+                                c.ajouter(e);
+                        }
+                        RESULT = c;
+                :}
                 ;
 
-LISTE_DECL ::= DECLARATION LISTE_DECL 
-			| DECLARATION
+LISTE_DECL ::= LISTE_DECL:li DECLARATION:d
+                {:
+                        if(d != null){
+                                li.addAll(d);
+                        }
+                        RESULT = li;
+                :}
+                | DECLARATION:d
+                {:
+                        List<Instruction> li = new LinkedList<Instruction>();
+                        if(d != null){
+                                li.addAll(d);
+                        }
+                        RESULT = li;
+                :}
+                ;
 				
-DECLARATION ::= DECL_CHAMP | DECL_CONST
+DECLARATION ::= DECL_CHAMP pointvirgule
+                {:
+                        RESULT = null;
+                :}
+                | DECL_CONST:li pointvirgule
+                {:
+                        RESULT = li;
+                :}
+                ;
 
-LISTE_IDF 	::= , idf LISTE_IDF
-			| , idf
+DECL_CHAMP ::= 	STATUT:s TYPE:t LISTE_IDF
+                {: 	
+                :}
+                ;
 
-DECL_CHAMP ::= 	STATUT:s TYPE:t idf:i LISTE_IDF
-				{: 	/*Tds tds = Tds.getInstance();
-					tds.ajouter(new Entree(i), new Symbole(); */)
-				:}
+LISTE_IDF 	::= idf
+		| LISTE_IDF virgule idf
+                ;
 
-STATUT	::=		publique:pu
-				{: RESULT = pu; :}
+
+
+STATUT	::=	publique:pu
+		{: RESULT = pu; :}
 
 		| privee:pr
 		{: RESULT = pr; :}
+                ;
 
-TYPE	::=		entier:e
-				{: RESULT = e; :}
+TYPE	::=	entier:e
+		{: RESULT = e; :}
+                ;
 
-DECL_CONST ::= 	{INSTRUCTION} +
+DECL_CONST ::= 	DECL_CONST:li INSTRUCTION:i
+                {:
+                        li.add(i);
+                        RESULT = li;
+                :}
+                | INSTRUCTION:i
+                {:
+                        List<Instruction> li = new LinkedList<Instruction>();
+                        li.add(i);
+                        RESULT = li;
+                :}
+                ;
 
-INSTRUCTION ::= AFFECT | ECRIRE
+INSTRUCTION ::= AFFECT:a pointvirgule
+                {:
+                        RESULT = a;
+                :}
+                | ECRIRE:e pointvirgule
+                {:
+                        RESULT = e;
+                :}
+                ;
 
-AFFECT 	::= 	ACCES:var = EXP:e ;
-				{: 	/*AffectationEntiere aff = new AffectationEntiere(var, e);
-					RESULT = aff;*/ :}
-				;
+AFFECT 	::= 	ACCES:var egal EXPR:e
+                {:
+                        RESULT = new AffectationEntier(var, e);
+                :}
+                ;
 
 ACCES	::= 	idf:i
-				{: RESULT = i; :}
-				;
+                {: 
+                        RESULT = i;
+                :}
+                ;
 				
-ECRIRE	::= 	ecrire EXP ; | ecrire csteChaine ;
+ECRIRE	::= 	ecrire EXPR
+                {:
+                        RESULT = null;
+                :}
+                | ecrire chaine:cst
+                {:
+                        RESULT = new Ecrire(0, cst);
+                :}
+                ;
+
+
 
 EXPR    ::=     EXPR:g  PLUS  EXPR:d
                 {: RESULT = new Plus(g, d) ; :}
