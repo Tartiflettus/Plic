@@ -5,7 +5,7 @@ import java.util.HashMap;
 import plic.exceptions.AnalyseSemantiqueException;
 
 public class Tds {
-	private Tds instance = new Tds();
+	private static Tds instance = new Tds();
 	private HashMap<Entree, Symbole> map;
 	private int tailleZone;
 
@@ -15,7 +15,7 @@ public class Tds {
 		tailleZone=0;
 	}
 	
-	public Tds getInstance(){
+	public static Tds getInstance(){
 		return instance;
 	}
 	
@@ -32,9 +32,7 @@ public class Tds {
 		if(map.containsKey(e)){
 			return map.get(e);
 		}
-		else{
-			throw new AnalyseSemantiqueException(0,0,"Variable " + e.getNom() + " non déclarée.");
-		}
+		return null;
 	}
 	
 	public void EntreeBloc(){
