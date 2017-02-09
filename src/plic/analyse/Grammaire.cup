@@ -94,14 +94,20 @@ SYSTEME ::= 	CLASSE
                    RESULT = arbre ; */:}
                 ;
 
-CLASSE 	::=		classe idf:i {DECLARATION}* fin
+CLASSE 	::=		classe idf:i LISTE_DECL fin
 				{: /*BlocDInstructions arbre = new BlocDInstructions(eleft+1) ;
                    RESULT = arbre ; */:}
                 ;
 
+LISTE_DECL ::= DECLARATION LISTE_DECL 
+			| DECLARATION
+				
 DECLARATION ::= DECL_CHAMP | DECL_CONST
 
-DECL_CHAMP ::= 	STATUT:s TYPE:t idf:i {, idf}*
+LISTE_IDF 	::= , idf LISTE_IDF
+			| , idf
+
+DECL_CHAMP ::= 	STATUT:s TYPE:t idf:i LISTE_IDF
 				{: 	/*Tds tds = Tds.getInstance();
 					tds.ajouter(new Entree(i), new Symbole(); */)
 				:}
