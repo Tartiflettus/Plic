@@ -68,12 +68,12 @@ parser code {:
 
 terminal Symbol    PLUS, MOINS, MULT, DIV, PAROUV, PARFER ;
 terminal Symbol    SUP, INF, EGALEGAL, DIFF, ET, OU, NON ;
-terminal String    CONSTANTEINT, CONSTANTEBOOL ;
+terminal String    CONSTANTEINT, CONSTANTEBOOL, classe, idf, publique, privee, entier;
    
 /* Non terminals used in the grammar section.  */
 
-non terminal ArbreAbstrait PROG ;
-non terminal Expression EXPR, CSTE ;
+non terminal ArbreAbstrait SYSTEME ;
+non terminal Expression CLASSE, DECLARATION, DECL_CHAMP, STATUT, TYPE, DECL_CONST, INSTRUCTION, AFFECT, ACCES, ECRIRE, EXPR, CSTE;
 
 precedence left INF, SUP ;
 precedence left EGALEGAL, DIFF;
@@ -85,14 +85,51 @@ precedence left NON ;
 
 /* ----------------------------Grammar Section-------------------- */
  
-start with PROG ;
+start with SYSTEME ;
 
-PROG    ::=     EXPR:e 
-                {: BlocDInstructions arbre = new BlocDInstructions(eleft+1) ;
-                   arbre.ajouter(e) ;
-                   RESULT = arbre ; :}
+SYSTEME ::= 	CLASSE
+				{: 
+				
+				/*BlocDInstructions arbre = new BlocDInstructions(eleft+1) ;
+                   RESULT = arbre ; */:}
                 ;
-    
+
+CLASSE 	::=		classe idf:i {DECLARATION}* fin
+				{: /*BlocDInstructions arbre = new BlocDInstructions(eleft+1) ;
+                   RESULT = arbre ; */:}
+                ;
+
+DECLARATION ::= DECL_CHAMP | DECL_CONST
+
+DECL_CHAMP ::= 	STATUT:s TYPE:t idf:i {, idf}*
+				{: 	/*Tds tds = Tds.getInstance();
+					tds.ajouter(new Entree(i), new Symbole(); */)
+				:}
+
+STATUT	::=		publique:pu
+				{: RESULT = pu; :}
+
+		| privee:pr
+		{: RESULT = pr; :}
+
+TYPE	::=		entier:e
+				{: RESULT = e; :}
+
+DECL_CONST ::= 	{INSTRUCTION} +
+
+INSTRUCTION ::= AFFECT | ECRIRE
+
+AFFECT 	::= 	ACCES:var = EXP:e ;
+				{: 	/*AffectationEntiere aff = new AffectationEntiere(var, e);
+					RESULT = aff;*/ :}
+				;
+
+ACCES	::= 	idf:i
+				{: RESULT = i; :}
+				;
+				
+ECRIRE	::= 	ecrire EXP ; | ecrire csteChaine ;
+
 EXPR    ::=     EXPR:g  PLUS  EXPR:d
                 {: RESULT = new Plus(g, d) ; :}
         | 

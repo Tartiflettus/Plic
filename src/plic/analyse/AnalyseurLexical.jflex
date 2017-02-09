@@ -28,6 +28,12 @@ import plic.exceptions.AnalyseLexicaleException;
   }
 %}
 
+idf = [a-zA-Z]+([0-9]+ | [a-zA-Z] | "_" | "$")*
+classe = "class"
+publique = "publique"
+privee = "privee"
+entier = "entier"
+
 csteE = [0-9]+
 csteB = "vrai" | "faux"
 
@@ -35,6 +41,12 @@ finDeLigne = \r|\n
 espace = {finDeLigne}  | [ \t\f]
 
 %%
+
+idf 				{ return symbol(CodesLexicaux.IDF); }
+classe 				{ return symbol(CodesLexicaux.CLASS); }
+publique			{ return symbol(CodesLexicaux.PUBLIQUE); }
+privee				{ return symbol(CodesLexicaux.PRIVEE); }
+entier				{ return symbol(CodesLexicaux.ENTIER); }
 
 "+"                	{ return symbol(CodesLexicaux.PLUS); }
 "-"                	{ return symbol(CodesLexicaux.MOINS); }
