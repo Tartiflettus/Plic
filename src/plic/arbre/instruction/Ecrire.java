@@ -21,7 +21,7 @@ public class Ecrire extends Instruction {
 				+ "li $a0, str"+ (numLabelActu) +"\n"
 				+ "syscall\n"
 				+ "b finsyscall" + (numLabelActu) +"\n"
-				+ "str"+ (numLabelActu) +": .asciiz \""+ (numLabelActu) +"\"\n"
+				+ "str"+ (numLabelActu) +": .asciiz \""+ chaine +"\"\n"
 				+ "finsyscall "+ (numLabelActu) +":\n";
 		numLabelActu++;
 		return res;
