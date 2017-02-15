@@ -4,7 +4,6 @@ import java.util.*;
 import plic.arbre.* ;
 import plic.arbre.expression.* ;
 import plic.arbre.instruction.*;
-import plic.arbre.variable.*;
 import plic.arbre.classe.*;
 import plic.tds.*;
 import plic.exceptions.*;
@@ -80,7 +79,7 @@ terminal String    CONSTANTEINT, CONSTANTEBOOL, idf, entier, chaine;
 non terminal ArbreAbstrait SYSTEME ;
 non terminal Classe CLASSE;
 non terminal Expression EXPR, CSTE;
-non terminal int STATUT;
+non terminal Integer STATUT;
 non terminal Type TYPE;
 non terminal List<Instruction> LISTE_DECL, DECL_CHAMP, DECL_CONST, DECLARATION;
 non terminal Instruction INSTRUCTION, AFFECT, ECRIRE;
@@ -161,7 +160,7 @@ STATUT	::=	publique
                 ;
 
 TYPE	::=	entier
-		{: RESULT = Entree.ENTIER; :}
+		{: RESULT = new TypeEntier(); :}
                 ;
 
 DECL_CONST ::= 	DECL_CONST:li INSTRUCTION:i
