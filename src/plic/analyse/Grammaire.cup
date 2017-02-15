@@ -5,6 +5,7 @@ import plic.arbre.* ;
 import plic.arbre.expression.* ;
 import plic.arbre.instruction.*;
 import plic.arbre.variable.*;
+import plic.arbre.classe.*;
 import plic.tds.*;
 import plic.exceptions.*;
 
@@ -81,8 +82,8 @@ non terminal Classe CLASSE;
 non terminal Expression EXPR, CSTE;
 non terminal int STATUT;
 non terminal Type TYPE;
-non terminal BlocDInstructions LISTE_DECL, DECL_CHAMP, DECL_CONST;
-non terminal Instruction DECLARATION, INSTRUCTION, AFFECT, ECRIRE;
+non terminal List<Instruction> LISTE_DECL, DECL_CHAMP, DECL_CONST, DECLARATION;
+non terminal Instruction INSTRUCTION, AFFECT, ECRIRE;
 non terminal Entree ACCES;
 non terminal List<String> LISTE_IDF;
 non terminal String CSTCHAINE;
@@ -108,10 +109,8 @@ SYSTEME ::= 	CLASSE:c
 
 CLASSE 	::=	classe idf:i LISTE_DECL:l fin
                 {: 
-                        Classe c = new Classe(i);
-                        for(Entree e : l){
-                                c.ajouter(e);
-                        }
+                        Classe c = new Classe(0);
+                        c.ajouterTout(l);
                         RESULT = c;
                 :}
                 ;
@@ -154,15 +153,15 @@ LISTE_IDF 	::= idf
 
 
 
-STATUT	::=	publique:pu
-		{: RESULT = pu; :}
+STATUT	::=	publique
+		{: RESULT = Entree.PUBLIQUE; :}
 
-		| privee:pr
-		{: RESULT = pr; :}
+		| privee
+		{: RESULT = Entree.PRIVEE; :}
                 ;
 
-TYPE	::=	entier:e
-		{: RESULT = e; :}
+TYPE	::=	entier
+		{: RESULT = Entree.ENTIER; :}
                 ;
 
 DECL_CONST ::= 	DECL_CONST:li INSTRUCTION:i
@@ -196,7 +195,8 @@ AFFECT 	::= 	ACCES:var egal EXPR:e
 
 ACCES	::= 	idf:i
                 {: 
-                        RESULT = i;
+                        Entree e = new Entree(i);
+                        RESULT = e;
                 :}
                 ;
 				
