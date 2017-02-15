@@ -58,20 +58,19 @@ espace = {finDeLigne}  | [ \t\f]
 
 
 
-<YYINITIAL> {idf} 				{ return symbol(CodesLexicaux.IDF, yytext()); }
 
 <YYINITIAL> {entier}				{ return symbol(CodesLexicaux.entier); }
-<YYINITIAL> {chaine} 				{ return symbol(CodesLexicaux.chaine, yytext()); }
 <YYINITIAL> {classe} 				{ return symbol(CodesLexicaux.classe); }
 <YYINITIAL> {publique}			{ return symbol(CodesLexicaux.publique); }
 <YYINITIAL> {privee}				{ return symbol(CodesLexicaux.privee); }
 <YYINITIAL> {ecrire}        { return symbol(CodesLexicaux.ecrire); }
 <YYINITIAL> {fin}           { return symbol(CodesLexicaux.fin); }
 
+
+
 <YYINITIAL> ";"           { return symbol(CodesLexicaux.pointvirgule); } 
 <YYINITIAL> "="           { return symbol(CodesLexicaux.egal); }
 <YYINITIAL> ","           { return symbol(CodesLexicaux.virgule); }
-<YYINITIAL> "\""          { return symbol(CodesLexicaux.guillemet); }
 
 
 <YYINITIAL> "+"                	{ return symbol(CodesLexicaux.PLUS); }
@@ -100,6 +99,9 @@ espace = {finDeLigne}  | [ \t\f]
 
 <YYINITIAL> {csteE}      	        { return symbol(CodesLexicaux.CONSTANTEINT, yytext()); }
 <YYINITIAL> {csteB}      	        { return symbol(CodesLexicaux.CONSTANTEBOOL, yytext()); }
+
+<YYINITIAL> {idf} 				{ return symbol(CodesLexicaux.idf, yytext()); }
+<YYINITIAL> {chaine} 				{ return symbol(CodesLexicaux.chaine, yytext()); }
 
 {espace}                { }
 

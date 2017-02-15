@@ -3,7 +3,10 @@ package plic.analyse ;
 import java.util.*;
 import plic.arbre.* ;
 import plic.arbre.expression.* ;
-import plic.exceptions.AnalyseSyntaxiqueException;
+import plic.arbre.instruction.*;
+import plic.arbre.variable.*;
+import plic.tds.*;
+import plic.exceptions.*;
 
 import java_cup.runtime.*;
 
