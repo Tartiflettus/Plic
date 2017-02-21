@@ -1,0 +1,8 @@
+//test de plic 2
+
+classe JeanPhilippe
+    publique entier a, b;
+    a = 1;
+    b = a + 2;
+    ecrire b;
+fin
