@@ -141,22 +141,37 @@ DECLARATION ::= DECL_CHAMP pointvirgule
                 :}
                 ;
 
-DECL_CHAMP ::= 	STATUT:s TYPE:t LISTE_IDF
-                {: 	
+DECL_CHAMP ::= 	STATUT:s TYPE:t LISTE_IDF:lidf
+                {:
+                        Tds tds = Tds.getInstance();
+                        for(String idf : lidf){
+                                Entree e = new Entree(idf);
+                                Symbole symb = new Symbole(s, new TypeEntier());
+                                tds.ajouter(e, symb);
+                        }
                 :}
                 ;
 
-LISTE_IDF 	::= idf
-		| LISTE_IDF virgule idf
-                ;
+LISTE_IDF 	::= LISTE_IDF:li virgule idf:i
+                {:
+                        li.add(i);
+                        RESULT = li;
+                :}
+                | idf:i
+                {:
+                        List<String> li = new LinkedList<String>();
+                        li.add(i);
+                        RESULT = li;
+                :}
+                ; 
 
 
 
 STATUT	::=	publique
-		{: RESULT = Entree.PUBLIQUE; :}
+		{: RESULT = Symbole.PUBLIQUE; :}
 
 		| privee
-		{: RESULT = Entree.PRIVEE; :}
+		{: RESULT = Symbole.PRIVEE; :}
                 ;
 
 TYPE	::=	entier
