@@ -5,7 +5,6 @@ import plic.exceptions.AnalyseSyntaxiqueException;
 public class Symbole {
 	private int spec;
 	private Type type;
-	private static int deplMem=0;
 	private int depl;
 	
 	
@@ -28,8 +27,7 @@ public class Symbole {
 	public Symbole(int acces, Type t){
 		spec=acces;
 		type=t;
-		depl = deplMem;
-		deplMem-=4;
+		depl = Tds.getInstance().getDeplacementMemoire();
 	}
 
 	

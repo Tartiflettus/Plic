@@ -8,6 +8,9 @@ public class Tds {
 	private static Tds instance = new Tds();
 	private HashMap<Entree, Symbole> map;
 	private int tailleZone;
+	
+	private static int deplMem=0;
+
 
 
 	private Tds(){
@@ -22,6 +25,7 @@ public class Tds {
 	public void ajouter(Entree e, Symbole s){
 		if(!map.containsKey(e)){
 			map.put(e,s);
+			deplMem -= 4;
 		}
 		else{
 			throw new AnalyseSemantiqueException(0,0,"Variable " + e.getNom() + " deja declaree.");
@@ -33,6 +37,11 @@ public class Tds {
 			return map.get(e);
 		}
 		return null;
+	}
+	
+	
+	public int getDeplacementMemoire(){
+		return deplMem;
 	}
 	
 	public void EntreeBloc(){
