@@ -53,7 +53,7 @@ parser code {:
                 m.append(" dernier token lu : " + lesTerminaux.get(new Integer(s.sym))) ;
             }
             else {
-                m.append(" expression non terminée") ;
+                m.append(" expression non terminﾃｩe") ;
             }
 
         }
@@ -85,7 +85,6 @@ non terminal List<Instruction> LISTE_DECL, DECL_CHAMP, DECL_CONST, DECLARATION;
 non terminal Instruction INSTRUCTION, AFFECT, ECRIRE;
 non terminal Entree ACCES;
 non terminal List<String> LISTE_IDF;
-non terminal String CSTCHAINE;
 
 
 precedence left INF, SUP ;
@@ -95,6 +94,11 @@ precedence left MULT, DIV ;
 precedence left OU ;
 precedence left ET ;
 precedence left NON ;
+
+/* WARNING : ne fait que supprimer les erreurs de shift/reduce. pas forcément correct */
+precedence left ecrire;
+precedence left idf;
+
 
 /* ----------------------------Grammar Section-------------------- */
  
@@ -131,17 +135,17 @@ LISTE_DECL ::= LISTE_DECL:li DECLARATION:d
                 :}
                 ;
 				
-DECLARATION ::= DECL_CHAMP pointvirgule
+DECLARATION ::= DECL_CHAMP
                 {:
                         RESULT = null;
                 :}
-                | DECL_CONST:li pointvirgule
+                | DECL_CONST:li
                 {:
                         RESULT = li;
                 :}
                 ;
 
-DECL_CHAMP ::= 	STATUT:s TYPE:t LISTE_IDF:lidf
+DECL_CHAMP ::= 	STATUT:s TYPE:t LISTE_IDF:lidf pointvirgule
                 {:
                         Tds tds = Tds.getInstance();
                         for(String idf : lidf){
@@ -169,14 +173,13 @@ LISTE_IDF 	::= LISTE_IDF:li virgule idf:i
 
 STATUT	::=	publique
 		{: RESULT = Symbole.PUBLIQUE; :}
-
 		| privee
 		{: RESULT = Symbole.PRIVEE; :}
-                ;
+        ;
 
 TYPE	::=	entier
 		{: RESULT = new TypeEntier(); :}
-                ;
+        ;
 
 DECL_CONST ::= 	DECL_CONST:li INSTRUCTION:i
                 {:
@@ -214,11 +217,7 @@ ACCES	::= 	idf:i
                 :}
                 ;
 				
-ECRIRE	::= 	ecrire EXPR
-                {:
-                        RESULT = null;
-                :}
-                | ecrire chaine:cst
+ECRIRE	::= 	ecrire chaine:cst
                 {:
                         RESULT = new Ecrire(0, cst);
                 :}
