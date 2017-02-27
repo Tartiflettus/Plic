@@ -266,6 +266,9 @@ EXPR    ::=     EXPR:g  PLUS  EXPR:d
         |
                 PAROUV  EXPR:e  PARFER
                 {: RESULT = e ; :}
+        |		
+        		ACCES:e
+        		{: RESULT = new VariableEntiere(0, e) ; :}
                 ;
 
 CSTE    ::=     CONSTANTEINT:e 

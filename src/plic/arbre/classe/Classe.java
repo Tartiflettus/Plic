@@ -1,6 +1,7 @@
 package plic.arbre.classe;
 
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 import plic.arbre.ArbreAbstrait;
@@ -11,6 +12,7 @@ public class Classe extends ArbreAbstrait {
 
 	public Classe(int no) {
 		super(no);
+		declarations = new LinkedList<Instruction>();
 	}
 	
 	
