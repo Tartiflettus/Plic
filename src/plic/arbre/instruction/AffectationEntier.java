@@ -19,13 +19,14 @@ public class AffectationEntier extends Affectation {
 		Symbole s = tds.identifier(idf);
 		if(droite.getType() != Expression.ENTIER){
 			throw new AnalyseSemantiqueException(getNoLigne(), 0, "L'expression droite n'est pas entière");
-		}		
+		}
 	}
 
 	@Override
 	public String toMIPS() {
 		Tds tds = Tds.getInstance();
 		Symbole s = tds.identifier(idf);
+		assert(s != null);
 		return droite.toMIPS() + "sw $v0, " + s.getDeplacement() + "($s7)\n";
 	}
 

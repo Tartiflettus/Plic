@@ -25,7 +25,7 @@ public class VariableEntiere extends Variable {
 		Tds tds = Tds.getInstance();
 		Symbole s = tds.identifier(idf);
 		assert(s != null);
-		return "lw $v0, " + s.getDeplacement() + "($s7)";
+		return "lw $v0, " + s.getDeplacement() + "($s7)\n";
 	}
 
 	@Override

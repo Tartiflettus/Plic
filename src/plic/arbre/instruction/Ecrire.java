@@ -1,5 +1,7 @@
 package plic.arbre.instruction;
 
+import plic.tds.Tdd;
+
 public class Ecrire extends Instruction {
 	private String chaine;
 	
@@ -17,12 +19,10 @@ public class Ecrire extends Instruction {
 
 	@Override
 	public String toMIPS() {
+		int num = Tdd.getInstance().ajouterDonnee(".asciiz " + chaine);
 		String res = "li $v0, 4\n"
-				+ "li $a0, str"+ (numLabelActu) +"\n"
-				+ "syscall\n"
-				+ "b finsyscall" + (numLabelActu) +"\n"
-				+ "str"+ (numLabelActu) +": .asciiz \""+ chaine +"\"\n"
-				+ "finsyscall "+ (numLabelActu) +":\n";
+				+ "la $a0, data"+num + "\n"
+				+ "syscall\n";
 		numLabelActu++;
 		return res;
 	}

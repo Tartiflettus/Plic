@@ -152,6 +152,7 @@ DECL_CHAMP ::= 	STATUT:s TYPE:t LISTE_IDF:lidf pointvirgule
                                 Entree e = new Entree(idf);
                                 Symbole symb = new Symbole(s, new TypeEntier());
                                 tds.ajouter(e, symb);
+                                System.out.println("ajout de variable : "+e.getNom());
                         }
                 :}
                 ;

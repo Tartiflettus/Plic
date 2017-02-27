@@ -10,6 +10,7 @@ import plic.analyse.AnalyseurLexical;
 import plic.analyse.AnalyseurSyntaxique;
 import plic.arbre.ArbreAbstrait;
 import plic.exceptions.AnalyseException;
+import plic.tds.Tdd;
 
 /**
  * 24 mars 2015
@@ -24,7 +25,9 @@ public class Plic {
 			AnalyseurSyntaxique analyseur = new AnalyseurSyntaxique(new AnalyseurLexical(new FileReader(fichier)));
 			ArbreAbstrait arbre = (ArbreAbstrait) analyseur.parse().value;
 			arbre.verifier();
-			creationFichierMIPS(arbre.toMIPS() + "end :\n" + "move $v1, $v0\n" + "li $v0, 10\n" + "syscall", fichier);
+			String arbreMips = arbre.toMIPS();
+			String dataMips = Tdd.getInstance().toMIPS();
+			creationFichierMIPS(dataMips + arbreMips + "end :\n" + "move $v1, $v0\n" + "li $v0, 10\n" + "syscall", fichier);
 			System.out.println("Compilation OK");
 
 		} catch (FileNotFoundException ex) {
