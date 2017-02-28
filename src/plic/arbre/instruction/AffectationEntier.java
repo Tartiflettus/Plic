@@ -17,8 +17,11 @@ public class AffectationEntier extends Affectation {
 	public void verifier() {
 		Tds tds = Tds.getInstance();
 		Symbole s = tds.identifier(idf);
+		if(s == null){
+			throw new AnalyseSemantiqueException(getNoLigne(), 0, "La variable "+idf.getNom()+" n'a pas été déclarée");
+		}
 		if(droite.getType() != Expression.ENTIER){
-			throw new AnalyseSemantiqueException(getNoLigne(), 0, "L'expression droite n'est pas entière");
+			throw new AnalyseSemantiqueException(getNoLigne(), 0, "L'expression droite n'est pas entiﾃｨre");
 		}
 	}
 

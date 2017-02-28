@@ -1,0 +1,7 @@
+classe mauvais
+	//pas de fin
+	privee entier a1;
+	a2 = 0;
+	a1 = 1;
+	ecrire "MAUVAIS";
+fin

@@ -1,0 +1,8 @@
+classe sixcensoixantesix
+    /* patate */
+    publique entier polnareff, jojo;
+    jojo = 2;
+    polnareff = (5 + 2 - 3) / jojo;
+
+    ecrire "haha, patate";
+fin
