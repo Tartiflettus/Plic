@@ -5,4 +5,5 @@ classe JeanPhilippe
     a = 1;
     b = a + 2;
     ecrire "coucou";
+    ecrire (1>2);
 fin

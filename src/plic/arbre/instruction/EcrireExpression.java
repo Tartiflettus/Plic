@@ -1,6 +1,7 @@
 package plic.arbre.instruction;
 
 import plic.arbre.expression.Expression;
+import plic.tds.Tdd;
 
 public class EcrireExpression extends Instruction {
 	private Expression expr;
@@ -17,8 +18,11 @@ public class EcrireExpression extends Instruction {
 
 	@Override
 	public String toMIPS() {
-		// TODO Auto-generated method stub
-		return null;
+		String res = expr.toMIPS()
+				+ "move $a0, $v0\n"
+				+ "li $v0, 1\n"
+				+ "syscall\n";
+		return res;
 	}
 
 }

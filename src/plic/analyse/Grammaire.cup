@@ -222,6 +222,10 @@ ECRIRE	::= 	ecrire chaine:cst
                 {:
                         RESULT = new Ecrire(0, cst);
                 :}
+                |ecrire EXPR:e
+                {:
+                		RESULT = new EcrireExpression(0, e);
+                :}
                 ;
 
 
