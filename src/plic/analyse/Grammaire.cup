@@ -71,7 +71,7 @@ parser code {:
 
 terminal Symbol    PLUS, MOINS, MULT, DIV, PAROUV, PARFER ;
 terminal Symbol    SUP, INF, EGALEGAL, DIFF, ET, OU, NON ;
-terminal Symbol    fin, pointvirgule, publique, privee, classe, egal, virgule, ecrire;
+terminal Symbol    fin, pointvirgule, publique, privee, classe, egal, virgule, ecrire, tantque, repeter, fintantque;
 terminal String    CONSTANTEINT, CONSTANTEBOOL, idf, entier, chaine;
    
 /* Non terminals used in the grammar section.  */
@@ -82,7 +82,7 @@ non terminal Expression EXPR, CSTE;
 non terminal Integer STATUT;
 non terminal Type TYPE;
 non terminal List<Instruction> LISTE_DECL, DECL_CHAMP, DECL_CONST, DECLARATION;
-non terminal Instruction INSTRUCTION, AFFECT, ECRIRE;
+non terminal Instruction INSTRUCTION, AFFECT, ECRIRE, BOUCLE;
 non terminal Entree ACCES;
 non terminal List<String> LISTE_IDF;
 
@@ -206,12 +206,32 @@ INSTRUCTION ::= AFFECT:a pointvirgule
                 :}
                 ;
                 
-BLOCDINSTRUCTIONS ::=	LIST_INST
+BLOCDINSTRUCTIONS ::=	LIST_INST:li
+						{:
+							RESULT = li;
+						:}
 					;
 
-LIST_INST ::=	LIST_INST INSTRUCTION
-			|	INSTRUCTION
+LIST_INST ::=	LIST_INST:li INSTRUCTION:i
+				{:
+					li.ajouter(i);
+					RESULT = li;
+				:}
+			|	INSTRUCTION:i
+				{:
+					BlocDInstructions b = new BlocDInstructions(ileft);
+					b.ajouter(i);
+					RESULT = b;
+				:}
 			;
+			
+BOUCLE 	::=		tantque:ligne EXPR:e repeter BLOCDINSTRUCTIONS:b fintantque
+				{:
+					TantQue tq = new TantQue(ligneleft, e, b);
+					
+					RESULT = tq;
+				:}
+		;
 
 AFFECT 	::= 	ACCES:var egal EXPR:e
                 {:

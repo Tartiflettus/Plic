@@ -67,6 +67,11 @@ espace = {finDeLigne}  | [ \t\f]
 <YYINITIAL> {fin}           { return symbol(CodesLexicaux.fin); }
 
 
+<YYINITIAL> "tantque"           { return symbol(CodesLexicaux.tantque); }
+<YYINITIAL> "repeter"           { return symbol(CodesLexicaux.repeter); } 
+<YYINITIAL> "fintantque"           { return symbol(CodesLexicaux.fintantque); }
+
+
 
 <YYINITIAL> ";"           { return symbol(CodesLexicaux.pointvirgule); } 
 <YYINITIAL> "="           { return symbol(CodesLexicaux.egal); }
