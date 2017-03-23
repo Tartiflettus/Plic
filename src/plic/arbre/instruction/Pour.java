@@ -46,9 +46,9 @@ public class Pour extends Instruction{
 	public String toMIPS() {
 		StringBuilder s = new StringBuilder();
 		s.append(affect.toMIPS());
-		if(operateur == "++")
+		if(operateur.equals("++"))
 			instructions.ajouter(new AffectationEntier(affect.idf, new Plus(new VariableEntiere(noLigne, affect.idf), new ConstanteEntiere(1+"", noLigne))));
-		else
+		else if(operateur .equals("--"))
 			instructions.ajouter(new AffectationEntier(affect.idf, new Moins(new VariableEntiere(noLigne, affect.idf), new ConstanteEntiere(1+"", noLigne))));
 		TantQue tq = new TantQue(noLigne, expBool, instructions);
 		s.append(tq.toMIPS());
