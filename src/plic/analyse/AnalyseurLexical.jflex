@@ -42,7 +42,10 @@ privee = "privee"
 entier = "entier"
 fin = "fin"
 ecrire = "ecrire"
-
+si = "si"
+alors = "alors"
+sinon = "sinon"
+fsi = "fsi"
 
 csteE = [0-9]+
 csteB = "vrai" | "faux"
@@ -85,7 +88,11 @@ pour = "pour"
 										//System.out.println("fintantque");
 										return symbol(CodesLexicaux.fintantque); 
 									}
-
+		
+<YYINITIAL>	{si}	{ return symbol(CodesLexicaux.si); }
+<YYINITIAL>	{alors}	{ return symbol(CodesLexicaux.alors); }
+<YYINITIAL>	{sinon}	{ return symbol(CodesLexicaux.sinon); }
+<YYINITIAL>	{fsi}	{ return symbol(CodesLexicaux.fsi); }
 
 
 <YYINITIAL> ";"           { return symbol(CodesLexicaux.pointvirgule); } 
