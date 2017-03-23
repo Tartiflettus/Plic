@@ -15,6 +15,7 @@ public class TantQue extends Instruction {
 
 	@Override
 	public void verifier() {
+		expr.verifier();
 		bloc.verifier();
 	}
 
