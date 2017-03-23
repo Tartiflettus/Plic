@@ -71,8 +71,8 @@ parser code {:
 
 terminal Symbol    PLUS, MOINS, MULT, DIV, PAROUV, PARFER ;
 terminal Symbol    SUP, INF, EGALEGAL, DIFF, ET, OU, NON ;
-terminal Symbol    fin, pointvirgule, publique, privee, classe, egal, virgule, ecrire;
-terminal String    CONSTANTEINT, CONSTANTEBOOL, idf, entier, chaine, debut, fin, OPEROPER;
+terminal Symbol    debut, fin, pointvirgule, publique, privee, classe, egal, virgule, ecrire, pour;
+terminal String    CONSTANTEINT, CONSTANTEBOOL, idf, entier, chaine, OPEROPER;
    
 /* Non terminals used in the grammar section.  */
 
@@ -82,7 +82,7 @@ non terminal Expression EXPR, CSTE;
 non terminal Integer STATUT;
 non terminal Type TYPE;
 non terminal List<Instruction> LISTE_DECL, DECL_CHAMP, DECL_CONST, DECLARATION;
-non terminal Instruction INSTRUCTION, AFFECT, ECRIRE;
+non terminal Instruction INSTRUCTION, AFFECT, ECRIRE, BOUCLE;
 non terminal Entree ACCES;
 non terminal List<String> LISTE_IDF;
 
@@ -236,8 +236,11 @@ ECRIRE	::= 	ecrire chaine:cst
                 :}
                 ;
 
-BOUCLE  ::= 	pour (idf=EXP ; EXP; idf OPEROPER) debut 
-				{INSTRUCTION} fin
+BOUCLE  ::= 	pour PAROUV idf:ileft egal EXPR:e1 pointvirgule EXPR:e2 pointvirgule idf:i OPEROPER:op PARFER debut LIST_INST:i fin
+				{:
+					RESULT = new Pour(ileft, i, e1, e2, i, op, instr);
+				:}
+				;
 				
 EXPR    ::=     EXPR:g  PLUS  EXPR:d
                 {: RESULT = new Plus(g, d) ; :}

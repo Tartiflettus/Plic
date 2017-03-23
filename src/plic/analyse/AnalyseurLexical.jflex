@@ -51,8 +51,8 @@ finDeLigne = \r|\n
 espace = {finDeLigne}  | [ \t\f]
 
 debut = "debut"
-fin = "fin"
 operoper = "++" | "--"
+pour = "pour"
 
 %%
 
@@ -69,6 +69,8 @@ operoper = "++" | "--"
 <YYINITIAL> {privee}				{ return symbol(CodesLexicaux.privee); }
 <YYINITIAL> {ecrire}        { return symbol(CodesLexicaux.ecrire); }
 <YYINITIAL> {fin}           { return symbol(CodesLexicaux.fin); }
+<YYINITIAL> {debut}				{return symbol(CodesLexicaux.debut); }
+<YYINITIAL> {pour}				{return symbol(CodesLexicaux.pour);}
 
 
 
@@ -106,10 +108,7 @@ operoper = "++" | "--"
 
 <YYINITIAL> {idf} 				{ return symbol(CodesLexicaux.idf, yytext()); }
 <YYINITIAL> {chaine} 				{ return symbol(CodesLexicaux.chaine, yytext()); }
-
-<YINITIAL> {debut}				{return symbol(CodesLexicaux.debut, yytext()); }
-<YINITIAL> {fin}				{return symbol(CodesLexicaux.fin, yytext()); }
-<YINITIAL> {operoper}			{return symbol(CoodesLexicaux.fin, yytext()); }
+<YYINITIAL> {operoper}			{return symbol(CoodesLexicaux.operoper, yytext()); }
 
 {espace}                { }
 
