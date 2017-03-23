@@ -72,7 +72,7 @@ parser code {:
 terminal Symbol    PLUS, MOINS, MULT, DIV, PAROUV, PARFER ;
 terminal Symbol    SUP, INF, EGALEGAL, DIFF, ET, OU, NON ;
 terminal Symbol    fin, pointvirgule, publique, privee, classe, egal, virgule, ecrire;
-terminal String    CONSTANTEINT, CONSTANTEBOOL, idf, entier, chaine;
+terminal String    CONSTANTEINT, CONSTANTEBOOL, idf, entier, chaine, debut, fin, OPEROPER;
    
 /* Non terminals used in the grammar section.  */
 
@@ -228,8 +228,9 @@ ECRIRE	::= 	ecrire chaine:cst
                 :}
                 ;
 
-
-
+BOUCLE  ::= 	pour (idf=EXP ; EXP; idf OPEROPER) debut 
+				{INSTRUCTION} fin
+				
 EXPR    ::=     EXPR:g  PLUS  EXPR:d
                 {: RESULT = new Plus(g, d) ; :}
         | 

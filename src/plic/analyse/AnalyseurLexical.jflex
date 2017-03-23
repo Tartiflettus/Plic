@@ -50,6 +50,10 @@ csteB = "vrai" | "faux"
 finDeLigne = \r|\n
 espace = {finDeLigne}  | [ \t\f]
 
+debut = "debut"
+fin = "fin"
+operoper = "++" | "--"
+
 %%
 
 <YYINITIAL> {commentaireSlashSlash} {}
@@ -102,6 +106,10 @@ espace = {finDeLigne}  | [ \t\f]
 
 <YYINITIAL> {idf} 				{ return symbol(CodesLexicaux.idf, yytext()); }
 <YYINITIAL> {chaine} 				{ return symbol(CodesLexicaux.chaine, yytext()); }
+
+<YINITIAL> {debut}				{return symbol(CodesLexicaux.debut, yytext()); }
+<YINITIAL> {fin}				{return symbol(CodesLexicaux.fin, yytext()); }
+<YINITIAL> {operoper}			{return symbol(CoodesLexicaux.fin, yytext()); }
 
 {espace}                { }
 
