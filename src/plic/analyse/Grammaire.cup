@@ -203,7 +203,7 @@ INSTRUCTION ::= AFFECT:a pointvirgule
                 :}
                 | ECRIRE:e pointvirgule
                 {:
-                		System.out.println("ecrire");
+                		//System.out.println("ecrire");
                         RESULT = e;
                 :}
                 | BOUCLE:b
