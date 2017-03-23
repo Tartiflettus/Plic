@@ -86,6 +86,7 @@ non terminal Instruction INSTRUCTION, AFFECT, ECRIRE;
 non terminal Entree ACCES;
 non terminal List<String> LISTE_IDF;
 
+non terminal BlocDInstructions BLOCDINSTRUCTIONS, LIST_INST;
 
 precedence left INF, SUP ;
 precedence left EGALEGAL, DIFF;
@@ -204,6 +205,13 @@ INSTRUCTION ::= AFFECT:a pointvirgule
                         RESULT = e;
                 :}
                 ;
+                
+BLOCDINSTRUCTIONS ::=	LIST_INST
+					;
+
+LIST_INST ::=	LIST_INST INSTRUCTION
+			|	INSTRUCTION
+			;
 
 AFFECT 	::= 	ACCES:var egal EXPR:e
                 {:
