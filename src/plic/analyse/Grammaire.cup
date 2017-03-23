@@ -99,6 +99,7 @@ precedence left NON ;
 /* WARNING : ne fait que supprimer les erreurs de shift/reduce. pas forcément correct */
 precedence left ecrire;
 precedence left idf;
+precedence left tantque;
 
 
 /* ----------------------------Grammar Section-------------------- */
@@ -202,12 +203,18 @@ INSTRUCTION ::= AFFECT:a pointvirgule
                 :}
                 | ECRIRE:e pointvirgule
                 {:
+                		System.out.println("ecrire");
                         RESULT = e;
+                :}
+                | BOUCLE:b
+                {:
+                	RESULT = b;
                 :}
                 ;
                 
 BLOCDINSTRUCTIONS ::=	LIST_INST:li
 						{:
+							//System.out.println("Bloc D'instructions");
 							RESULT = li;
 						:}
 					;
@@ -227,6 +234,7 @@ LIST_INST ::=	LIST_INST:li INSTRUCTION:i
 			
 BOUCLE 	::=		tantque:ligne EXPR:e repeter BLOCDINSTRUCTIONS:b fintantque
 				{:
+					//System.out.println("boucle");
 					TantQue tq = new TantQue(ligneleft, e, b);
 					
 					RESULT = tq;

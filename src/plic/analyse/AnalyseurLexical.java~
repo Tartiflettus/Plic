@@ -769,7 +769,8 @@ public class AnalyseurLexical implements java_cup.runtime.Scanner {
             }
           case 49: break;
           case 17: 
-            { return symbol(CodesLexicaux.chaine, yytext());
+            { //System.out.println("chaine : "+yytext());
+										return symbol(CodesLexicaux.chaine, yytext());
             }
           case 50: break;
           case 18: 
@@ -821,11 +822,13 @@ public class AnalyseurLexical implements java_cup.runtime.Scanner {
             }
           case 62: break;
           case 30: 
-            { return symbol(CodesLexicaux.repeter);
+            { //System.out.println("repeter");
+									return symbol(CodesLexicaux.repeter);
             }
           case 63: break;
           case 31: 
-            { return symbol(CodesLexicaux.tantque);
+            { //System.out.println("tantque");
+									return symbol(CodesLexicaux.tantque);
             }
           case 64: break;
           case 32: 
@@ -833,7 +836,8 @@ public class AnalyseurLexical implements java_cup.runtime.Scanner {
             }
           case 65: break;
           case 33: 
-            { return symbol(CodesLexicaux.fintantque);
+            { //System.out.println("fintantque");
+										return symbol(CodesLexicaux.fintantque);
             }
           case 66: break;
           default:

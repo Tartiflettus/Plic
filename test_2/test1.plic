@@ -1,0 +1,14 @@
+//test de tant que
+classe Jean
+	privee entier i;
+	i = 0;
+	tantque (i < 5) repeter
+		i = i + 1;
+		ecrire "coucou\n";
+	fintantque
+	
+	ecrire "il faut 5 itérations\n";
+	ecrire "i vaut ";
+	ecrire i;
+	ecrire "\n";
+fin

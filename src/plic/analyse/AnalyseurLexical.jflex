@@ -67,9 +67,18 @@ espace = {finDeLigne}  | [ \t\f]
 <YYINITIAL> {fin}           { return symbol(CodesLexicaux.fin); }
 
 
-<YYINITIAL> "tantque"           { return symbol(CodesLexicaux.tantque); }
-<YYINITIAL> "repeter"           { return symbol(CodesLexicaux.repeter); } 
-<YYINITIAL> "fintantque"           { return symbol(CodesLexicaux.fintantque); }
+<YYINITIAL> "tantque"           { 
+									//System.out.println("tantque");
+									return symbol(CodesLexicaux.tantque); 
+								}
+<YYINITIAL> "repeter"           { 
+									//System.out.println("repeter");
+									return symbol(CodesLexicaux.repeter); 
+								} 
+<YYINITIAL> "fintantque"           { 
+										//System.out.println("fintantque");
+										return symbol(CodesLexicaux.fintantque); 
+									}
 
 
 
@@ -106,7 +115,10 @@ espace = {finDeLigne}  | [ \t\f]
 <YYINITIAL> {csteB}      	        { return symbol(CodesLexicaux.CONSTANTEBOOL, yytext()); }
 
 <YYINITIAL> {idf} 				{ return symbol(CodesLexicaux.idf, yytext()); }
-<YYINITIAL> {chaine} 				{ return symbol(CodesLexicaux.chaine, yytext()); }
+<YYINITIAL> {chaine} 				{ 
+										//System.out.println("chaine : "+yytext());
+										return symbol(CodesLexicaux.chaine, yytext()); 
+									}
 
 {espace}                { }
 
