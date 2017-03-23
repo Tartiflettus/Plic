@@ -71,9 +71,9 @@ parser code {:
 
 terminal Symbol    PLUS, MOINS, MULT, DIV, PAROUV, PARFER ;
 terminal Symbol    SUP, INF, EGALEGAL, DIFF, ET, OU, NON ;
-terminal Symbol    debut, fin, pointvirgule, publique, privee, classe, egal, virgule, ecrire, pour;
-terminal String    CONSTANTEINT, CONSTANTEBOOL, idf, entier, chaine, OPEROPER;
-   
+terminal Symbol    debut, fin, pointvirgule, publique, privee, classe, egal, virgule, ecrire, pour, tantque, repeter, fintantque;
+terminal String    CONSTANTEINT, CONSTANTEBOOL, idf, entier, chaine, operoper;
+
 /* Non terminals used in the grammar section.  */
 
 non terminal ArbreAbstrait SYSTEME ;
@@ -82,7 +82,8 @@ non terminal Expression EXPR, CSTE;
 non terminal Integer STATUT;
 non terminal Type TYPE;
 non terminal List<Instruction> LISTE_DECL, DECL_CHAMP, DECL_CONST, DECLARATION;
-non terminal Instruction INSTRUCTION, AFFECT, ECRIRE, BOUCLE;
+non terminal Instruction INSTRUCTION, ECRIRE, BOUCLE;
+non terminal Affectation AFFECT;
 non terminal Entree ACCES;
 non terminal List<String> LISTE_IDF;
 
@@ -99,6 +100,8 @@ precedence left NON ;
 /* WARNING : ne fait que supprimer les erreurs de shift/reduce. pas forcément correct */
 precedence left ecrire;
 precedence left idf;
+precedence left tantque;
+precedence left pour;
 
 
 /* ----------------------------Grammar Section-------------------- */
@@ -202,16 +205,47 @@ INSTRUCTION ::= AFFECT:a pointvirgule
                 :}
                 | ECRIRE:e pointvirgule
                 {:
+                		//System.out.println("ecrire");
                         RESULT = e;
+                :}
+                | BOUCLE:b
+                {:
+                	RESULT = b;
                 :}
                 ;
                 
-BLOCDINSTRUCTIONS ::=	LIST_INST
+BLOCDINSTRUCTIONS ::=	LIST_INST:li
+						{:
+							//System.out.println("Bloc D'instructions");
+							RESULT = li;
+						:}
 					;
 
-LIST_INST ::=	LIST_INST INSTRUCTION
-			|	INSTRUCTION
+LIST_INST ::=	LIST_INST:li INSTRUCTION:i
+				{:
+					li.ajouter(i);
+					RESULT = li;
+				:}
+			|	INSTRUCTION:i
+				{:
+					BlocDInstructions b = new BlocDInstructions(ileft);
+					b.ajouter(i);
+					RESULT = b;
+				:}
 			;
+			
+BOUCLE 	::=		tantque:ligne EXPR:e repeter BLOCDINSTRUCTIONS:b fintantque
+				{:
+					//System.out.println("boucle");
+					TantQue tq = new TantQue(ligneleft, e, b);
+					
+					RESULT = tq;
+				:}
+				|pour PAROUV AFFECT:a pointvirgule EXPR:e2 pointvirgule idf:i1 operoper:op PARFER debut LIST_INST:instr fin
+				{:
+					RESULT = new Pour(aleft, a, e2, new Entree(i1), op, instr);
+				:}
+		;
 
 AFFECT 	::= 	ACCES:var egal EXPR:e
                 {:
@@ -235,12 +269,6 @@ ECRIRE	::= 	ecrire chaine:cst
                 		RESULT = new EcrireExpression(0, e);
                 :}
                 ;
-
-BOUCLE  ::= 	pour PAROUV idf:ileft egal EXPR:e1 pointvirgule EXPR:e2 pointvirgule idf:i OPEROPER:op PARFER debut LIST_INST:i fin
-				{:
-					RESULT = new Pour(ileft, i, e1, e2, i, op, instr);
-				:}
-				;
 				
 EXPR    ::=     EXPR:g  PLUS  EXPR:d
                 {: RESULT = new Plus(g, d) ; :}

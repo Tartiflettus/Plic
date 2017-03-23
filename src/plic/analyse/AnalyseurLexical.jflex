@@ -73,6 +73,20 @@ pour = "pour"
 <YYINITIAL> {pour}				{return symbol(CodesLexicaux.pour);}
 
 
+<YYINITIAL> "tantque"           { 
+									//System.out.println("tantque");
+									return symbol(CodesLexicaux.tantque); 
+								}
+<YYINITIAL> "repeter"           { 
+									//System.out.println("repeter");
+									return symbol(CodesLexicaux.repeter); 
+								} 
+<YYINITIAL> "fintantque"           { 
+										//System.out.println("fintantque");
+										return symbol(CodesLexicaux.fintantque); 
+									}
+
+
 
 <YYINITIAL> ";"           { return symbol(CodesLexicaux.pointvirgule); } 
 <YYINITIAL> "="           { return symbol(CodesLexicaux.egal); }
@@ -102,13 +116,13 @@ pour = "pour"
 
 <YYINITIAL> "("                	{ return symbol(CodesLexicaux.PAROUV); }
 <YYINITIAL> ")"                	{ return symbol(CodesLexicaux.PARFER); }
+<YYINITIAL> {operoper}			{return symbol(CodesLexicaux.operoper, yytext()); }
 
 <YYINITIAL> {csteE}      	        { return symbol(CodesLexicaux.CONSTANTEINT, yytext()); }
 <YYINITIAL> {csteB}      	        { return symbol(CodesLexicaux.CONSTANTEBOOL, yytext()); }
 
 <YYINITIAL> {idf} 				{ return symbol(CodesLexicaux.idf, yytext()); }
 <YYINITIAL> {chaine} 				{ return symbol(CodesLexicaux.chaine, yytext()); }
-<YYINITIAL> {operoper}			{return symbol(CoodesLexicaux.operoper, yytext()); }
 
 {espace}                { }
 

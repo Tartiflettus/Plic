@@ -1,0 +1,12 @@
+classe Philippe
+	privee entier i;
+	pour (i=0; i<5; i++) debut
+		ecrire "itération\n";
+		ecrire i;
+	fin
+	
+	ecrire "il faut 5 itérations\n";
+	ecrire "i vaut ";
+	ecrire i;
+	ecrire "\n";
+fin
