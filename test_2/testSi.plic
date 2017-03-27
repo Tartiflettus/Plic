@@ -1,10 +1,14 @@
 classe Sylvanus
 
        publique entier wow;
-       wow=1;
+       wow=2;
 
        si wow==1 alors
        ecrire "Qu'est-ce que c'est que ce truc ?!";
+       sinon
+       si wow==2 alors
+       ecrire "Eva est une poule !";
+       fsi
        fsi
 
 fin

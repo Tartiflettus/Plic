@@ -1,0 +1,23 @@
+.data
+data0: .asciiz "Qu'est-ce que c'est que ce truc ?!"
+.text
+move $s7, $sp
+addi $sp, $sp, -4
+li $v0, 1
+sw $v0, 0($s7)
+lw $v0, 0($s7)
+sw $v0, ($sp)
+addi $sp, $sp, -4
+li $v0, 1
+addi $sp, $sp, 4
+lw $t8, ($sp)
+seq $v0, $v0, $t8
+bez $v0, fin
+li $v0, 4
+la $a0, data0
+syscall
+fin:
+end :
+move $v1, $v0
+li $v0, 10
+syscall
