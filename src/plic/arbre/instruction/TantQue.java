@@ -8,12 +8,14 @@ public class TantQue extends Instruction {
 	private Expression expr;
 	private BlocDInstructions bloc;
 	
-	private static int numTantQueActu = 0;
+	private static int numTantQue = 0;
+	private int numTantQueActu;
 
 	public TantQue(int no, Expression e, BlocDInstructions b) {
 		super(no);
 		expr = e;
 		bloc = b;
+		numTantQueActu = numTantQue++;
 	}
 
 	@Override
@@ -37,7 +39,6 @@ public class TantQue extends Instruction {
 		sb.append("b tantque"+numTantQueActu+"\n");
 		sb.append("fintantque"+numTantQueActu+":\n");
 		
-		++numTantQueActu;
 		return sb.toString();
 	}
 }
