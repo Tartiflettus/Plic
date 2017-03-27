@@ -1,14 +1,15 @@
 //test de tant que
 classe Jean
-	privee entier i;
+	privee entier i, j;
 	i = 0;
+	j = 0;
 	tantque (i < 5) repeter
-		ecrire "itération\n";
+		tantque (j < 5) repeter
+			j = j + 1;
+			ecrire "iteration j\n";
+		fintantque
 		i = i + 1;
+		ecrire "iteration i\n";
 	fintantque
 	
-	ecrire "il faut 5 itérations\n";
-	ecrire "i vaut ";
-	ecrire i;
-	ecrire "\n";
 fin
