@@ -7,10 +7,10 @@ classe Jean
 		j = 0;
 		tantque (j < 5) repeter
 			j = j + 1;
-			//ecrire "iteration j\n";
+			ecrire "iteration j\n";
 		fintantque
 		i = i + 1;
-		//ecrire "iteration i\n";
+		ecrire "iteration i\n";
 	fintantque
 	
 	ecrire "i vaut ";

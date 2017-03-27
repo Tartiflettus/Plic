@@ -9,11 +9,13 @@ public class TantQue extends Instruction {
 	private BlocDInstructions bloc;
 	
 	private static int numTantQue = 0;
+	private int numTantQueActu;
 
 	public TantQue(int no, Expression e, BlocDInstructions b) {
 		super(no);
 		expr = e;
 		bloc = b;
+		numTantQueActu = numTantQue++;
 	}
 
 	@Override
@@ -29,8 +31,6 @@ public class TantQue extends Instruction {
 	@Override
 	public String toMIPS() {
 		StringBuilder sb = new StringBuilder();
-		
-		int numTantQueActu = numTantQue++;
 		
 		sb.append("tantque"+numTantQueActu+":\n");
 		sb.append(expr.toMIPS());
