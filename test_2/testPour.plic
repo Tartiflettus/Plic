@@ -1,18 +1,25 @@
 classe Philippe
 	privee entier i;
 	privee entier j;
+	privee entier k;
+	k=0;
 	pour (i=0; i<5; i++) debut
 		ecrire "itération i: ";
 		ecrire i;
-		ecrire "\n";
+		ecrire "\n\n";
 		pour (j=0; j<5; j++) debut
 			ecrire "itération j: ";
 			ecrire j;
-			ecrire "\n";
+			ecrire "\n\n";
+			k=0;
+			tantque (k<5) repeter
+				k = k+1;
+				ecrire "itération k: ";
+				ecrire k;
+				ecrire "\n";
+			fintantque		
+			ecrire "Fin boucle plus a l'interieur\n";		
 		fin
+		ecrire "Fin boucle pour interieure\n";
 	fin
-	
-	ecrire "i vaut ";
-	ecrire i;
-	ecrire "\n";
 fin
