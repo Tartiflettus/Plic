@@ -4,12 +4,19 @@ classe Jean
 	i = 0;
 	j = 0;
 	tantque (i < 5) repeter
+		j = 0;
 		tantque (j < 5) repeter
 			j = j + 1;
-			ecrire "iteration j\n";
+			//ecrire "iteration j\n";
 		fintantque
 		i = i + 1;
-		ecrire "iteration i\n";
+		//ecrire "iteration i\n";
 	fintantque
+	
+	ecrire "i vaut ";
+	ecrire i;
+	ecrire "\nj vaut ";
+	ecrire j;
+	ecrire "\n";
 	
 fin
