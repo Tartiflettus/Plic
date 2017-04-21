@@ -145,6 +145,12 @@ CLASSE 	::=	classe idf:i LISTE_DECL:l fin
                 RESULT = c;
 			:}
             ;
+            
+CONSTR	::= STATUT idf:i fin
+			{:
+				
+			:}
+			;
 
 LISTE_DECL ::= LISTE_DECL:li DECLARATION:d
                 {:
