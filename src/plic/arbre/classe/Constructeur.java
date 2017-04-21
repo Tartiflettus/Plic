@@ -24,7 +24,7 @@ public class Constructeur extends ArbreAbstrait {
 	@Override
 	public String toMIPS() {
 		//label du constructeur + bloc effectif
-		return e.getNom() + ":\n" + bloc.toMIPS();
+		return e.getNom() + "_cons:\n" + bloc.toMIPS();
 	}
 
 }

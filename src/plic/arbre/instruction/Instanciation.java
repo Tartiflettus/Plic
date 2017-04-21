@@ -29,7 +29,7 @@ public class Instanciation extends Instruction {
 		Symbole s = tds.identifier(e);
 		assert(s != null);
 		
-		return BlocDInstructions.appelFonction(e.getNom());
+		return BlocDInstructions.appelFonction(e.getNom()+"_cons");
 		
 	}
 
