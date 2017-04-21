@@ -78,7 +78,7 @@ terminal String    CONSTANTEINT, CONSTANTEBOOL, idf, entier, chaine, operoper;
 
 non terminal ArbreAbstrait SYSTEME ;
 non terminal Classe CLASSE;
-non terminal Expression EXPR, CSTE;
+non terminal Expression EXPR, CSTE, INSTANCIATION;
 non terminal Integer STATUT;
 non terminal Type TYPE;
 non terminal List<Instruction> LISTE_DECL, DECL_CHAMP, DECL_CONST, DECLARATION;
@@ -316,6 +316,7 @@ ECRIRE	::= 	ecrire chaine:cst
                 		RESULT = new EcrireExpression(0, e);
                 :}
                 ;
+ 
 				
 EXPR    ::=     EXPR:g  PLUS  EXPR:d
                 {: RESULT = new Plus(g, d) ; :}
@@ -359,9 +360,22 @@ EXPR    ::=     EXPR:g  PLUS  EXPR:d
                 PAROUV  EXPR:e  PARFER
                 {: RESULT = e ; :}
         |		
-        		ACCES:e
-        		{: RESULT = new VariableEntiere(0, e) ; :}
+        	ACCES:e
+                {: RESULT = new VariableEntiere(0, e) ; :}
+        |       
+                INSTANCIATION:i
+                {: 
+                        RESULT = i;
+                :}
                 ;
+
+
+INSTANCIATION   ::=     nouveau:n idf:i PAROUV PARFER
+                        {:
+                                EntreeConstructeur e = new EntreeConstructeur(i);
+                                RESULT = new Instanciation(nleft, e);
+                        :}
+
 
 CSTE    ::=     CONSTANTEINT:e 
                 {: RESULT = new ConstanteEntiere(e, eleft+1) ; :}
