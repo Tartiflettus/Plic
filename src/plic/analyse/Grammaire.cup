@@ -147,6 +147,16 @@ CLASSE 	::=	classe idf:i LISTE_DECL:l fin
                 RESULT = c;
 			:}
             ;
+            
+CONSTR	::= STATUT:s idf:i debut BLOCDINSTRUCTIONS:b fin
+			{:
+				Tds tds = Tds.getInstance();
+				e=new EntreeConstructeur(i);
+				tds.ajouter(e, new SymboleConstructeur(s));
+				
+				RESULT = new Constructeur(ileft,e,b);
+			:}
+			;
 
 LISTE_DECL ::= LISTE_DECL:li DECLARATION:d
                 {:
