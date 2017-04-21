@@ -1,12 +1,13 @@
-package plic.arbre.instruction;
+package plic.arbre.expression;
 
 import plic.arbre.BlocDInstructions;
+import plic.arbre.instruction.Instruction;
 import plic.exceptions.AnalyseSemantiqueException;
 import plic.tds.EntreeConstructeur;
 import plic.tds.Symbole;
 import plic.tds.Tds;
 
-public class Instanciation extends Instruction {
+public class Instanciation extends Expression {
 	EntreeConstructeur e;
 
 	public Instanciation(int no, EntreeConstructeur e) {
@@ -31,6 +32,11 @@ public class Instanciation extends Instruction {
 		
 		return BlocDInstructions.appelFonction(e.getNom()+"_cons");
 		
+	}
+
+	@Override
+	public int getType() {
+		return Expression.CLASSE;
 	}
 
 }

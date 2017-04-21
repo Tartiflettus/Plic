@@ -12,6 +12,7 @@ public abstract class Expression extends ArbreAbstrait {
 	
 	public static final int BOOL = 1;
 	public static final int ENTIER = 2;
+	public static final int CLASSE = 3;
 
     protected Expression(int n) {
         super(n) ;
