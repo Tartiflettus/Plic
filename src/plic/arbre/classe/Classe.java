@@ -6,17 +6,21 @@ import java.util.List;
 
 import plic.arbre.ArbreAbstrait;
 import plic.arbre.instruction.Instruction;
+import plic.tds.EntreeClasse;
 
 public class Classe extends ArbreAbstrait {
 	private List<Instruction> declarations;
+	private EntreeClasse e;
 
-	public Classe(int no, String idf) {
+	public Classe(int no, EntreeClasse idf) {
 		super(no);
+		this.e = idf;
 		declarations = new LinkedList<Instruction>();
 	}
 	
-	public Classe(int no, String idf, String heritage) {
+	public Classe(int no, EntreeClasse idf, String heritage) {
 		super(no);
+		this.e = idf;
 		declarations = new LinkedList<Instruction>();
 	}
 	
@@ -36,6 +40,7 @@ public class Classe extends ArbreAbstrait {
 	public String toMIPS() {
 		StringBuilder sb = new StringBuilder();
 		
+		sb.append(e.getNom() + ":\n");
 		for(ArbreAbstrait a : declarations){
 			sb.append(a.toMIPS());
 		}

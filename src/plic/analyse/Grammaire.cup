@@ -71,7 +71,7 @@ parser code {:
 
 terminal Symbol    PLUS, MOINS, MULT, DIV, PAROUV, PARFER ;
 terminal Symbol    SUP, INF, EGALEGAL, DIFF, ET, OU, NON ;
-terminal Symbol    debut, fin, pointvirgule, publique, privee, classe, egal, virgule, ecrire, pour, tantque, repeter, fintantque, si, alors, sinon, fsi, herite;
+terminal Symbol    debut, fin, pointvirgule, publique, privee, classe, egal, virgule, ecrire, pour, tantque, repeter, fintantque, si, alors, sinon, fsi, herite, nouveau;
 terminal String    CONSTANTEINT, CONSTANTEBOOL, idf, entier, chaine, operoper;
 
 /* Non terminals used in the grammar section.  */
@@ -134,13 +134,15 @@ LISTE_CLASSE    ::= LISTE_CLASSE:li CLASSE:c
 				
 CLASSE 	::=	classe idf:i LISTE_DECL:l fin
             {: 
-                Classe c = new Classe(ileft, i);
+                EntreeClasse e = new EntreeClasse(i);
+                Classe c = new Classe(ileft, e);
                 c.ajouterTout(l);
                 RESULT = c;
             :}
 			|classe idf:i herite idf:h LISTE_DECL:l fin
 			{:
-				Classe c = new Classe(ileft, i, h);
+                                EntreeClasse e = new EntreeClasse(i);
+				Classe c = new Classe(ileft, e, h);
                 c.ajouterTout(l);
                 RESULT = c;
 			:}
@@ -375,7 +377,7 @@ INSTANCIATION   ::=     nouveau:n idf:i PAROUV PARFER
                                 EntreeConstructeur e = new EntreeConstructeur(i);
                                 RESULT = new Instanciation(nleft, e);
                         :}
-
+                        ;
 
 CSTE    ::=     CONSTANTEINT:e 
                 {: RESULT = new ConstanteEntiere(e, eleft+1) ; :}

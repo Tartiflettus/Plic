@@ -27,7 +27,8 @@ public class Plic {
 			arbre.verifier();
 			String arbreMips = arbre.toMIPS();
 			String dataMips = Tdd.getInstance().toMIPS();
-			creationFichierMIPS(dataMips + arbreMips + "end :\n" + "move $v1, $v0\n" + "li $v0, 10\n" + "syscall", fichier);
+			String pointEntree = "";//"b " + classePrincipale + "\n";
+			creationFichierMIPS(dataMips + pointEntree + arbreMips + "end :\n" + "move $v1, $v0\n" + "li $v0, 10\n" + "syscall", fichier);
 			System.out.println("Compilation OK");
 
 		} catch (FileNotFoundException ex) {
