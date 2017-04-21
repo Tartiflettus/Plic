@@ -1,0 +1,11 @@
+classe Jean
+	privee entier i, j;
+	i = 0;
+	j = 0;
+	ecrire j;
+	ecrire "\n";
+fin
+
+classe Jeanne herite Jean
+	ecrire "coucou";
+fin

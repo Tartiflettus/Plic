@@ -57,6 +57,8 @@ debut = "debut"
 operoper = "++" | "--"
 pour = "pour"
 
+herite = "herite"
+
 %%
 
 <YYINITIAL> {commentaireSlashSlash} {}
@@ -74,6 +76,7 @@ pour = "pour"
 <YYINITIAL> {fin}           { return symbol(CodesLexicaux.fin); }
 <YYINITIAL> {debut}				{return symbol(CodesLexicaux.debut); }
 <YYINITIAL> {pour}				{return symbol(CodesLexicaux.pour);}
+<YYINITIAL> {herite} 				{ return symbol(CodesLexicaux.herite); }
 
 
 <YYINITIAL> "tantque"           { 

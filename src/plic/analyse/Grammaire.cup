@@ -71,7 +71,7 @@ parser code {:
 
 terminal Symbol    PLUS, MOINS, MULT, DIV, PAROUV, PARFER ;
 terminal Symbol    SUP, INF, EGALEGAL, DIFF, ET, OU, NON ;
-terminal Symbol    debut, fin, pointvirgule, publique, privee, classe, egal, virgule, ecrire, pour, tantque, repeter, fintantque, si, alors, sinon, fsi;
+terminal Symbol    debut, fin, pointvirgule, publique, privee, classe, egal, virgule, ecrire, pour, tantque, repeter, fintantque, si, alors, sinon, fsi, herite;
 terminal String    CONSTANTEINT, CONSTANTEBOOL, idf, entier, chaine, operoper;
 
 /* Non terminals used in the grammar section.  */
@@ -82,6 +82,7 @@ non terminal Expression EXPR, CSTE;
 non terminal Integer STATUT;
 non terminal Type TYPE;
 non terminal List<Instruction> LISTE_DECL, DECL_CHAMP, DECL_CONST, DECLARATION;
+non terminal List<Classe> LISTE_CLASSE;
 non terminal Instruction INSTRUCTION, ECRIRE, BOUCLE, SI, CONDITION;
 non terminal Affectation AFFECT;
 non terminal Entree ACCES;
@@ -104,24 +105,46 @@ precedence left tantque;
 precedence left pour;
 precedence left si;
 
-
 /* ----------------------------Grammar Section-------------------- */
  
 start with SYSTEME ;
 
-SYSTEME ::= 	CLASSE:c
+SYSTEME ::= 	LISTE_CLASSE:li
                 {:
-                       RESULT = c;  
+                       RESULT = li.get(0);  
                 :}
-                ;
-
+				;
+				
+LISTE_CLASSE    ::= LISTE_CLASSE:li CLASSE:c
+				{:
+					 if(c != null){
+                                li.add(c);
+                        }
+                        RESULT = li;
+				:}
+				|CLASSE:c
+				{:
+					List<Classe> li = new LinkedList<Classe>();
+                        if(c != null){
+                                li.add(c);
+                        }
+                        RESULT = li;
+				:}
+				;
+				
 CLASSE 	::=	classe idf:i LISTE_DECL:l fin
-                {: 
-                        Classe c = new Classe(0);
-                        c.ajouterTout(l);
-                        RESULT = c;
-                :}
-                ;
+            {: 
+                Classe c = new Classe(ileft, i);
+                c.ajouterTout(l);
+                RESULT = c;
+            :}
+			|classe idf:i herite idf:h LISTE_DECL:l fin
+			{:
+				Classe c = new Classe(ileft, i, h);
+                c.ajouterTout(l);
+                RESULT = c;
+			:}
+            ;
 
 LISTE_DECL ::= LISTE_DECL:li DECLARATION:d
                 {:

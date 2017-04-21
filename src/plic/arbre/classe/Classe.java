@@ -10,12 +10,15 @@ import plic.arbre.instruction.Instruction;
 public class Classe extends ArbreAbstrait {
 	private List<Instruction> declarations;
 
-	public Classe(int no) {
+	public Classe(int no, String idf) {
 		super(no);
 		declarations = new LinkedList<Instruction>();
 	}
 	
-	
+	public Classe(int no, String idf, String heritage) {
+		super(no);
+		declarations = new LinkedList<Instruction>();
+	}
 	
 	public void ajouterTout(Collection<? extends Instruction> c){
 		declarations.addAll(c);

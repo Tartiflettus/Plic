@@ -20,7 +20,7 @@ import plic.tds.Tdd;
 
 public class Plic {
 
-	public Plic(String fichier) {
+	public Plic(String fichier, String classePrincipale) {
 		try {
 			AnalyseurSyntaxique analyseur = new AnalyseurSyntaxique(new AnalyseurLexical(new FileReader(fichier)));
 			ArbreAbstrait arbre = (ArbreAbstrait) analyseur.parse().value;
@@ -55,12 +55,12 @@ public class Plic {
 	}
 
 	public static void main(String[] args) {
-		if (args.length != 1) {
+		if (args.length != 2) {
 			System.err.println("Nombre incorrect d'arguments");
 			System.err.println("\tjava -jar plic.jar <fichierSource.plic>");
 			System.exit(1);
 		}
 
-		new Plic(args[0]);
+		new Plic(args[0], args[1]);
 	}
 }
