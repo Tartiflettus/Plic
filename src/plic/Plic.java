@@ -50,14 +50,14 @@ public class Plic {
 			save.write("\r\n");
 			save.close();
 		} catch (IOException exception) {
-			System.out.println("Erreur lors de l'�criture : " + exception.getMessage());
+			System.out.println("Erreur lors de l'馗riture : " + exception.getMessage());
 		}
 	}
 
 	public static void main(String[] args) {
 		if (args.length != 2) {
 			System.err.println("Nombre incorrect d'arguments");
-			System.err.println("\tjava -jar plic.jar <fichierSource.plic>");
+			System.err.println("\tjava -jar plic.jar <fichierSource.plic> <pointdentrée>");
 			System.exit(1);
 		}
 
