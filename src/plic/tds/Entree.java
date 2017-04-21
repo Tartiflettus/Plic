@@ -1,7 +1,7 @@
 package plic.tds;
 
 public class Entree {
-	private String nom;
+	protected String nom;
 	
 	
 	public Entree(String n){
