@@ -53,7 +53,7 @@ parser code {:
                 m.append(" dernier token lu : " + lesTerminaux.get(new Integer(s.sym))) ;
             }
             else {
-                m.append(" expression non terminﾃｩe") ;
+                m.append(" expression non termin�ｾ�ｽｩe") ;
             }
 
         }
@@ -98,7 +98,7 @@ precedence left OU ;
 precedence left ET ;
 precedence left NON ;
 
-/* WARNING : ne fait que supprimer les erreurs de shift/reduce. pas forcément correct */
+/* WARNING : ne fait que supprimer les erreurs de shift/reduce. pas forcﾃｩment correct */
 precedence left ecrire;
 precedence left idf;
 precedence left tantque;
@@ -372,7 +372,7 @@ EXPR    ::=     EXPR:g  PLUS  EXPR:d
                 PAROUV  EXPR:e  PARFER
                 {: RESULT = e ; :}
         |		
-        	ACCES:e
+        		ACCES:e
                 {: RESULT = new VariableEntiere(0, e) ; :}
         |       
                 INSTANCIATION:i

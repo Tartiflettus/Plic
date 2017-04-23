@@ -22,6 +22,7 @@ public class Instanciation extends Expression {
 		if(s == null){
 			throw new AnalyseSemantiqueException(noLigne, 0, e.getNom() + " n'a pas été déclarée\n");
 		}
+		
 	}
 
 	@Override
