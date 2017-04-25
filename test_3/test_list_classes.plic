@@ -1,11 +1,16 @@
 classe Jean
 	privee entier i, j;
-	i = 0;
-	j = 0;
-	ecrire j;
-	ecrire "\n";
 fin
 
 classe Jeanne herite Jean
+	privee entier l;
 	ecrire "coucou";
+fin
+
+classe dinde 
+	privee entier m;
+fin
+
+classe martine herite dinde
+	ecrire "martine est une dinde";
 fin

@@ -136,12 +136,16 @@ CLASSE 	::=	classe idf:i LISTE_DECL:l fin
             {: 
                 Classe c = new Classe(ileft, i);
                 c.ajouterTout(l);
+				Tds tds = Tds.getInstance();
+				tds.ajouterBloc(i, null);
                 RESULT = c;
             :}
 			|classe idf:i herite idf:h LISTE_DECL:l fin
 			{:
 				Classe c = new Classe(ileft, i, h);
                 c.ajouterTout(l);
+				Tds tds = Tds.getInstance();
+				tds.ajouterBloc(i, h);
                 RESULT = c;
 			:}
             ;
