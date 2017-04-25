@@ -111,7 +111,13 @@ start with SYSTEME ;
 
 SYSTEME ::= 	LISTE_CLASSE:li
                 {:
-                       RESULT = li.get(0);  
+						Tds tds = Tds.getInstance();
+						String name = tds.getClassePrincipale();
+						for(Classe c : li){
+							if (c.getNom().equals(name)){
+								RESULT = c;
+							}
+						}
                 :}
 				;
 				
@@ -143,7 +149,7 @@ CLASSE 	::=	classe idf:i LISTE_DECL:l fin
             :}
 			|classe idf:i herite idf:h LISTE_DECL:l fin
 			{:
-                                EntreeClasse e = new EntreeClasse(i);
+                EntreeClasse e = new EntreeClasse(i);
 				Classe c = new Classe(ileft, e, h);
                 c.ajouterTout(l);
 				Tds tds = Tds.getInstance();

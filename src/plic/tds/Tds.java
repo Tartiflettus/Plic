@@ -11,6 +11,7 @@ public class Tds {
 	private int tailleZone;
 	private ArrayList<Bloc> blocs;
 	private Bloc blocActu;
+	private String classePrincipale;
 
 	private static int deplMem = 0;
 
@@ -89,5 +90,13 @@ public class Tds {
 
 	public void SortieSortie() {
 
+	}
+	
+	public String getClassePrincipale(){
+		return classePrincipale;
+	}
+	
+	public void setClassePrincipale(String cp){
+		classePrincipale = cp;
 	}
 }

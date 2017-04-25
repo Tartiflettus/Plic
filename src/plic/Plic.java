@@ -11,6 +11,7 @@ import plic.analyse.AnalyseurSyntaxique;
 import plic.arbre.ArbreAbstrait;
 import plic.exceptions.AnalyseException;
 import plic.tds.Tdd;
+import plic.tds.Tds;
 
 /**
  * 24 mars 2015
@@ -22,6 +23,7 @@ public class Plic {
 
 	public Plic(String fichier, String classePrincipale) {
 		try {
+			Tds.getInstance().setClassePrincipale(classePrincipale);
 			AnalyseurSyntaxique analyseur = new AnalyseurSyntaxique(new AnalyseurLexical(new FileReader(fichier)));
 			ArbreAbstrait arbre = (ArbreAbstrait) analyseur.parse().value;
 			arbre.verifier();

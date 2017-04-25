@@ -6,5 +6,5 @@ public class EntreeClasse extends Entree {
 		super(n);
 		// TODO Auto-generated constructor stub
 	}
-
+	
 }

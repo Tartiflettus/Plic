@@ -28,6 +28,10 @@ public class Classe extends ArbreAbstrait {
 		declarations.addAll(c);
 	}
 	
+	public String getNom(){
+		return e.getNom();
+	}
+	
 
 	@Override
 	public void verifier() {
