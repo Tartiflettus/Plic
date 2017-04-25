@@ -77,6 +77,7 @@ herite = "herite"
 <YYINITIAL> {debut}				{return symbol(CodesLexicaux.debut); }
 <YYINITIAL> {pour}				{return symbol(CodesLexicaux.pour);}
 <YYINITIAL> {herite} 				{ return symbol(CodesLexicaux.herite); }
+<YYINITIAL> "nouveau" 			{ return symbol(CodesLexicaux.nouveau); }
 
 
 <YYINITIAL> "tantque"           { 

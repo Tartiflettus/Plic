@@ -27,7 +27,8 @@ public class Plic {
 			arbre.verifier();
 			String arbreMips = arbre.toMIPS();
 			String dataMips = Tdd.getInstance().toMIPS();
-			creationFichierMIPS(dataMips + arbreMips + "end :\n" + "move $v1, $v0\n" + "li $v0, 10\n" + "syscall", fichier);
+			String pointEntree = "";//"b " + classePrincipale + "\n";
+			creationFichierMIPS(dataMips + pointEntree + arbreMips + "end :\n" + "move $v1, $v0\n" + "li $v0, 10\n" + "syscall", fichier);
 			System.out.println("Compilation OK");
 
 		} catch (FileNotFoundException ex) {
@@ -50,14 +51,14 @@ public class Plic {
 			save.write("\r\n");
 			save.close();
 		} catch (IOException exception) {
-			System.out.println("Erreur lors de l'�criture : " + exception.getMessage());
+			System.out.println("Erreur lors de l'馗riture : " + exception.getMessage());
 		}
 	}
 
 	public static void main(String[] args) {
 		if (args.length != 2) {
 			System.err.println("Nombre incorrect d'arguments");
-			System.err.println("\tjava -jar plic.jar <fichierSource.plic>");
+			System.err.println("\tjava -jar plic.jar <fichierSource.plic> <pointdentrée>");
 			System.exit(1);
 		}
 
